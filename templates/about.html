@@ -1,0 +1,193 @@
+{#<html>#}
+{#<h3>Hello world!</h3>#}
+{#    {% load %}#}
+{#<a href="">{{ quest_room.id }}</a>#}
+{#<p>{{ quest_room.title }}</p>#}
+{#<p>{{ quest_room.description }}</p>#}
+{#<p>{{ quest_room.min_person_amount }}</p>#}
+{#<p>{{ quest_room.max_person_amount }}</p>#}
+{#<img src="{{ image_url }}" height="420">#}
+{##}
+{#<form action="{% url 'book_room' quest_room.id %}" method="post">#}
+{#    {% csrf_token %}#}
+{#    <input type="text" name="name">#}
+{#    <input type="number" name="phone">#}
+{#    <button type="submit" name="time">забронювати</button>#}
+{#</form>#}
+{##}
+{##}
+{#</html>#}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>True Quest</title>
+    <link rel="icon" type="image/png" href="{% static 'images/icons/favicon2.png' %}"/>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dycalendar.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/vanilla-calendar-min.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+</head>
+<body>
+<div class="hero">
+    <header class="header">
+        <div class="topnav" id="myTopnav">
+            <img src="{% static 'images/logo.png' %}" alt="">
+            <a href="{% url 'index' %}">
+                {% if request.session.lang == "ua" %}
+                    Головна
+                {% endif %}
+                {% if request.session.lang == "en" %}
+                    Main
+                {% endif %}
+                {% if request.session.lang == "ru" %}
+                    Главная
+                {% endif %}
+
+            </a>
+            <a class="active-menu">
+                {% if request.session.lang == "ua" %}
+                    Про нас
+                {% endif %}
+                {% if request.session.lang == "en" %}
+                    About Us
+                {% endif %}
+                {% if request.session.lang == "ru" %}
+                    О нас
+                {% endif %}
+            </a>
+            <a href="{% url 'franchise' %}" >
+                {% if request.session.lang == "ua" %}
+                    Франшиза
+                {% endif %}
+                {% if request.session.lang == "en" %}
+                    Franchise
+                {% endif %}
+                {% if request.session.lang == "ru" %}
+                    Франшиза
+                {% endif %}
+
+            </a>
+
+            <a
+                    {% if request.session.lang == "ua" %}
+                        class="language-active"
+                    {% else %}
+                        href="{% url 'change_language' "ua" %}"
+                        class="language"
+                    {% endif %}
+            >Ua</a>
+
+            <a
+                    {% if request.session.lang == "en" %}
+                        class="language-active"
+                    {% else %}
+                        href="{% url 'change_language' "en" %}"
+                        class="language"
+                    {% endif %}
+            >Eng</a>
+            <a
+                    {% if request.session.lang == "ru" %}
+                        class="language-active"
+                    {% else %}
+                        href="{% url 'change_language' "ru" %}"
+                        class="language"
+                    {% endif %}
+            >Ru</a>
+
+
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <img src="images/icons/lock.svg">
+            </a>
+        </div>
+    </header>
+
+
+    <!-- The dots/circles -->
+
+    <div class="room-details-content">
+        <div class="franchise">
+            <h3 style="text-align: center;">
+                {% if request.session.lang == "ua" %}
+                    Про нас
+                {% endif %}
+                {% if request.session.lang == "en" %}
+                    About us
+                {% endif %}
+                {% if request.session.lang == "ru" %}
+                    О нас
+                {% endif %}
+            </h3>
+            <div class="quest-detailed-info">
+
+                <div class="detailed-text">
+                    <p class="detailed-paragraph">TRUE QUEST – це абсолютно нове бачення старого. Наша команда протягом
+                        довгого часу відвідувала різні квест-кімнати в різних містах нашої рідної країни і ми помітили
+                        дещо, що узагальнювало всі квести – це пристосування до приміщення. Ми вирішили піти від іншого
+                        – пристосувати приміщенні під квест, тому в наших квестах все надзвичайно реалістичне, бо кожен
+                        елемент створювався з тим, а як на це буде дивитися гравець, чи не буде побудована реальність
+                        виглядати дешево і повертати гравця назад у буденність. Наша основна ціль надати гравцям те,
+                        чого ми не знайшли у всіх інших. Це велика робота над помилками, яку ми робили, робимо і будемо
+                        робити, тому що не існує ідеалів, але до них потрібно постійно крокувати. Це ми зробимо разом з
+                        Вами, бо ми також гравці, допитливі ентузіасти, які хочу розривати шаблони буденності і сірості,
+                        яка все більше і більше заполоняє наш світ. </p>
+                    <p class="detailed-paragraph">TRUE QUEST означає справжній квест, рішення про назву прийшло до нас
+                        абсолютно спонтанно і при досить рутинних обставинах. Наш дизайнер сидів у гарному закладі в
+                        центрі
+                        Львова і потягував смачну каву, якою так славиться наше місто і раптом, навіть не задумуючись,
+                        мимохідь, сказав, що йому потрібне щось справжнє, те, за що він буде готовий віддати гроші не
+                        шкодуючи і отримуючи задоволення. Справжній квест, подумали ми, не вичурна незрозуміла назва, а
+                        щось
+                        звичайне і, водночас те, чого не вистачає, те, що наче є, але, що складно знайти – справжність.
+                        Ось
+                        так справжня кава старого Львова піднесла неочікуваний результат наших міркувань. </p>
+                    <p class="detailed-paragraph">
+                        Напевно Вам кортить дізнатися як все починалося… Ми з радістю поділимося з Вами цієї історією,
+                        яка оповита суцільною містикою і несподіваними подіями, в які ми були втягнуті на шляху до
+                        відкриття.
+                        Все почалося чудовим весняним ранком 2020 року, наша компанія з чотирьох друзів вирішила вперше
+                        відвідати звичайний квест, але не будь-де, а у самому Єгипті, куди ми вирішили поїхати відпочити
+                        компанією. Але ми були б не ми, якщо не зіткнулися з гідом, який вирішив заробити грошенят
+                        пропонуючи нам всілякі екскурсії, однією з таких екскурсій був Каїр…Ну ми ж не думали, що від
+                        спеки нам так припече в голову, що ми погодимося піти з гідом в квест-кімнату. Чи то так спека
+                        на нас повпливала, чи то гід був був настільки красномовним, але наша пригода тільки починалася.
+                        Першою пригодою був сам Каїр, такий багатий і, водночас, такий злиденний. Нам тоді багато чого
+                        здавалося таким неоднозначним, але вже тоді ми відчули ту справжність, яка до сих пір
+                        залишається з нами. Красивою повинна бути не тільки обгортка, але й цукерка. (Смачною бажано
+                        теж) Перед тим як приїхати до місця розташування квесту, ми зупинялися майже в кожному великому
+                        магазині, бо ціни в місті надзвичайно різнилися з тими, що були на туристичних локаціях і, як в
+                        нас прийнято, скуповували весь мотлох, який тільки потрапляв у поле нашого зору. До чого ми це
+                        все ведемо, в кожному магазині ми купували абсолютно різні речі, не схожі одні на одні, але була
+                        одна річ, яку всі придбали однакову, це була місцева головоломка якогось майстра, яка базувалася
+                        на тому, що потрібно дістати металеву кульку з дерев’яної пірамідки. Тоді ми не звернули на те
+                        увагу, ми були в очікуванні надзвичайно реалістичного квесту з муміями, гробницями і незабутньою
+                        атмосферою. Нас обманули, як це часто буває, і обіцяний величний квест виявився повною помилкою
+                        природи і купою синців всюди, де тільки можливо. Ввечері ми дісталися нашого незабутнього
+                        готелю, який був рівноцінний квесту, і взнали, що пакунки з подарунками, які ми купували цілий
+                        день, зникли, як і сам гід. Відчувши повне розчарування ми пішли на вечерю і саме тоді
+                        виявилося, що пірамідки, які купили, були при нас, чотири абсолютно однакові пірамідки у кожного
+                        з нас. В той самий вечір ми вирішили зробити щось своє, справжнє і особливе)
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="{% static 'pikaday.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+<script>
+    var picker = new Pikaday({field: document.getElementById('datepicker')});
+</script>
+<script type="text/javascript" src="{% static 'dycalendar.js' %}"></script>
+<script src="{% static 'js/vanilla-calendar-min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'dycalendar.min.js' %}"></script>
+</body>
+</html>
