@@ -228,6 +228,7 @@ h3 {
     font-size: 2.2em;
     font-family: 'Roboto', sans-serif;
 }
+
 @-webkit-keyframes fade {
     from {
         opacity: .4
@@ -369,17 +370,17 @@ h2.room-title {
 
 /* Quest detailed info section*/
 
-.room-details-content{
-  padding: 6em;
+.room-details-content {
+    padding: 6em;
 }
 
 .short-description {
-  margin: 2em 0;
-  display: flex;
-  justify-content: center;
-  color: white;
-  font-family: 'Raleway', sans-serif;
-  font-size: 0.9em;
+    margin: 2em 0;
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.9em;
 }
 
 .short-description-text {
@@ -418,8 +419,9 @@ span.location {
 }
 
 .quest-detailed-info {
-    margin: 0 10em;
+    margin: 0 43em;
     display: flex;
+    justify-content: center;
     color: white;
     font-family: 'Raleway', sans-serif;
 }
@@ -431,34 +433,34 @@ span.location {
 }
 
 .questroom-contact {
-  padding: 1em;
+    padding: 1em;
 }
 
 .contact-paragraph {
-  margin: 0 1em;
-  font-size: 0.8em;
+    margin: 0 1em;
+    font-size: 0.8em;
 }
 
 .phone {
-  margin-bottom: 1em;
+    margin-bottom: 1em;
 }
 
 .email {
-  margin-bottom: 1em;
+    margin-bottom: 1em;
 }
 
 .location {
-  margin-bottom: 1em;
+    margin-bottom: 1em;
 }
 
 .quest-booking-info {
-  display: flex;
-  justify-content:center;
+    display: flex;
+    justify-content: center;
 }
 
 .calendar {
-  width: 400px;
-  height: 400px;
+    /*width: 400px;*/
+    /*height: 400px;*/
 }
 
 .date-input {
@@ -475,7 +477,7 @@ span.location {
 }
 
 .booking-hours {
-  margin: 0 2em;
+    margin: 0 2em;
 }
 
 input.input-booking {
@@ -509,6 +511,7 @@ input.input-booking {
 .disabled {
     background-color: #3e3b39d4;
     color: #5f5555;
+    pointer-events: none;
 }
 
 .selected {
@@ -620,8 +623,8 @@ footer {
 }
 
 .footer-distributed .footer-center p a {
-    color: #5383d3;
-    text-decoration: none;;
+    color: white;
+    text-decoration: none;
 }
 
 .footer-distributed .footer-right {
@@ -653,7 +656,7 @@ footer {
     width: 35px;
     height: 35px;
     cursor: pointer;
-    background-color: #33383b;
+    /*background-color: #33383b;*/
     border-radius: 2px;
 
     font-size: 20px;
@@ -784,15 +787,84 @@ footer {
 
     }
 
+}
 
-    /*
-      ##Device = Most of the Smartphones Mobiles (Portrait)
-      ##Screen = B/w 320px to 479px
-    */
-    @media (min-width: 320px) and (max-width: 480px) {
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+@media (min-width: 320px) and (max-width: 480px) {
 
-        /* CSS */
+    .hero {
+        width: 100%;
+    }
+
+    .hero-text {
+        margin: 0;
+    }
+
+
+    .hero-h3 {
+        margin: 2em 2em;
+    }
+
+    .rov {
+        flex-direction: column;
+    }
+
+    .room-img {
+        position: relative;
+        width: 23rem;
+        margin-top: 0;
+        margin-right: 0;
+        z-index: 999;
+    }
+
+    .room-info {
+
+        width: -webkit-fill-available;
 
     }
+
+    /*room page*/
+    .room-details-content {
+        padding: 1em;
+    }
+
+    .room-complexity {
+        margin: 0 0;
+    }
+
+    .room-time {
+        margin: 0 0;
+    }
+
+    .room-players {
+        margin: 0 0;
+    }
+
+    .short-description {
+        justify-content: space-evenly;
+    }
+
+    .quest-detailed-info {
+        margin: 0 0;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .quest-booking-info {
+        flex-direction: column;
+    }
+
+    input.input-booking {
+        width: -webkit-fill-available;
+    }
+
+    .date-input {
+        width: -webkit-fill-available;
+    }
+
 }
+
 
