@@ -15,8 +15,11 @@
 <div class="hero">
     <header class="header">
         <div class="topnav" id="myTopnav">
-            <img src="{% static 'images/logo.png' %}" alt="">
-            <a href="{% url 'index' %}">
+            <span class="logo">
+                 <img src="{% static 'images/logo.png' %}" alt="">
+            </span>
+            <span class="pages-navigation">
+                <a href="{% url 'index' %}">
                 {% if request.session.lang == "ua" %}
                     Головна
                 {% endif %}
@@ -28,7 +31,7 @@
                 {% endif %}
 
             </a>
-            <a href="{% url 'about' %}">
+                <a href="{% url 'about' %}">
                 {% if request.session.lang == "ua" %}
                     Про нас
                 {% endif %}
@@ -39,7 +42,7 @@
                     О нас
                 {% endif %}
             </a>
-            <a href="{% url 'franchise' %}">
+                <a href="{% url 'franchise' %}">
                 {% if request.session.lang == "ua" %}
                     Франшиза
                 {% endif %}
@@ -51,33 +54,15 @@
                 {% endif %}
 
             </a>
-
-            <a
-                    {% if request.session.lang == "ua" %}
-                        class="language-active"
-                    {% else %}
-                        href="{% url 'change_language' "ua" %}"
-                        class="language"
-                    {% endif %}
-            >Ua</a>
-
-            <a
-                    {% if request.session.lang == "en" %}
-                        class="language-active"
-                    {% else %}
-                        href="{% url 'change_language' "en" %}"
-                        class="language"
-                    {% endif %}
-            >Eng</a>
-            <a
-                    {% if request.session.lang == "ru" %}
-                        class="language-active"
-                    {% else %}
-                        href="{% url 'change_language' "ru" %}"
-                        class="language"
-                    {% endif %}
-            >Ru</a>
-
+            </span>
+            <span class="navigation-preferences">
+                <span class="language-preferences">
+                <a{% if request.session.lang == "ua" %} class="language-active"{% else %} href="{% url 'change_language' "ua" %}" class="language" {% endif %}>Ua</a>
+                <a{% if request.session.lang == "en" %} class="language-active" {% else %} href="{% url 'change_language' "en" %}" class="language" {% endif %}>Eng</a>
+                <a{% if request.session.lang == "ru" %} class="language-active" {% else %} href="{% url 'change_language' "ru" %}" class="language" {% endif %}>Ru</a>
+            </span>
+                <button type="button" class="btn">Квести</button>
+            </span>
 
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                 <img src="images/icons/lock.svg">
@@ -110,44 +95,68 @@
         <span class="dot" onclick="currentSlide(2)"></span>
         <span class="dot" onclick="currentSlide(3)"></span>
     </div>
-    <div class="room-details-content">
-        <div class="short-description">
-            <span class="room-complexity">
-             {% for i in "12345" %}
 
-                 {% if forloop.counter > quest_room.difficulty %}
-                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                          stroke="#5A402D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-                          class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2"
-                                                             ry="2"></rect><path
-                             d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                 {% else %}
-                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                          stroke="#FFA70A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-                          class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2"
-                                                             ry="2"></rect><path
-                             d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                 {% endif %}
-             {% endfor %}
-                <p>
+    <div class="room-details-content">
+          <div class="short-description">
+              <span class="room-complexity">
+                {% for i in "12345" %}
+                    {% if forloop.counter > quest_room.difficulty %}
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="#5A402D"
+                          stroke-width="3"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="feather feather-lock">
+                         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                         <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                     </svg>
+                    {% else %}
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="#FFA70A"
+                          stroke-width="3"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="feather feather-lock">
+                         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                         <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                     </svg>
+                    {% endif %}
+                {% endfor %}
+                  <p class="short-description-text">
                   {% if request.session.lang == "ua" %}
                       Складність
                   {% endif %}
-                    {% if request.session.lang == "en" %}
+                  {% if request.session.lang == "en" %}
                         Complexity
-                    {% endif %}
-                    {% if request.session.lang == "ru" %}
+                  {% endif %}
+                  {% if request.session.lang == "ru" %}
                         Сложность
-                    {% endif %}
-
-
-              </p></span>
-            <span class="room-time">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                   stroke="#FFA70A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-                   class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline
-                      points="12 6 12 12 16 14"></polyline></svg> {{ quest_room.quest_duration }}
-                <p>
+                  {% endif %}
+              </p>
+              </span>
+              <span class="room-time">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                   width="18"
+                   height="18"
+                   viewBox="0 0 24 24"
+                   fill="none"
+                   stroke="#FFA70A"
+                   stroke-width="3"
+                   stroke-linecap="round"
+                   stroke-linejoin="round"
+                   class="feather feather-clock">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg> {{ quest_room.quest_duration }}
+                <p class="short-description-text">
                     {% if request.session.lang == "ua" %}
                         Хвилин
                     {% endif %}
@@ -157,15 +166,23 @@
                     {% if request.session.lang == "ru" %}
                         Минут
                     {% endif %}
-
-                </p></span>
-            <span class="room-players">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                   stroke="#FFA70A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-                   class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle
-                      cx="12" cy="7"
-                      r="4"></circle></svg> {{ quest_room.min_person_amount }}-{{ quest_room.max_person_amount }}
-              <p>
+                </p>
+            </span>
+              <span class="room-players">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="18"
+                     height="18"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="#FFA70A"
+                     stroke-width="3"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     class="feather feather-user">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg> {{ quest_room.min_person_amount }}-{{ quest_room.max_person_amount }}
+                <p class="short-description-text">
                   {% if request.session.lang == "ua" %}
                       Гравці
                   {% endif %}
@@ -175,10 +192,10 @@
                   {% if request.session.lang == "ru" %}
                       Игроки
                   {% endif %}
-
-              </p></span>
+                </p>
+            </span>
         </div>
-        <div class="quest-detailed-info">
+          <div class="quest-detailed-info">
             <div class="detailed-text">
                 <p class="detailed-paragraph">
                     {% if request.session.lang == "ua" %}
@@ -218,44 +235,28 @@
 
             </div>
         </div>
-        <div class="quest-booking-info">
-
+          <div class="quest-booking-info">
             <div class="calendar">
-                <div id="dycalendar">
-                    <h3 style="margin-left: 120px; ">Дата:</h3>
-                    <input type="text" id="datepicker" placeholder="Виберіть дату" style="margin-left: 120px; ">
-                    <div class="buttonBlock">
-                        <button class="hourButton">9:00</button>
-                        <button class="hourButton">10:00</button>
-                        <button class="hourButton">11:00</button>
-                        <button class="hourButton">12:00</button>
-                        <br>
-                        <button class="hourButton">12:00</button>
-                        <button class="hourButton">14:00</button>
-                        <button class="hourButton">15:00</button>
-                        <button class="hourButton">16:00</button>
-                        <br>
-                        <button class="hourButton">17:00</button>
-                        <button class="hourButton">18:00</button>
-                        <button class="hourButton">19:00</button>
-                        <button class="hourButton">20:00</button>
-                    </div>
-
-
-                </div>
-                <div style="margin-top: 40px; margin-left: 40px">
-                    <form action="{% url 'book_room' quest_room.id %}" method="post">
-                        {% csrf_token %}
-                        <input type="text" name="name">
-                        <input type="number" name="phone">
-                        <button type="submit" name="time">забронювати</button>
-                    </form>
-                </div>
+             <input type="date" placeholder="Виберіть дату" class="date-input" style="margin-left: 120px;" min="2021-05-27" max="2021-06-15">
             </div>
+            <div class="booking-hours">
+                <button type="button" name="button" class="hour-selector enable">10:00 - 11:00</button>
+                <button type="button" name="button" class="hour-selector enable">11:00 - 12:00</button>
+                <button type="button" name="button" class="hour-selector enable">12:00 - 13:00</button>
 
-            <div id="myCalendar" class="vanilla-calendar"></div>
-        </div>
-    </div>
+            </div>
+            <div class="registration-input-fields">
+                <form action="{% url 'book_room' quest_room.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="text" name="name" class="input-booking" value="" placeholder="Name">
+                    <input type="text" name="phone" class="input-booking" value="" placeholder="Phone">
+                    <input type="text" name="email" class="input-booking" value="" placeholder="Email">
+                    <button type="submit" name="time" class="book-checkout">Забронювати</button>
+                </form>
+            </div>
+          </div>
+      </div>
+
 
 </div>
 

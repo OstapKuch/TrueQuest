@@ -57,7 +57,7 @@ h3 {
 
 .hero-text {
     text-align: center;
-    margin: 20% 12em 0 12em;
+    margin: 15% 12em 0 12em;
 }
 
 .hero-h3 {
@@ -68,27 +68,39 @@ h3 {
     height: 100vh;
 }
 
-/* Header and Navigation Styles */
+/* Header and navigation Styles */
+
 .header {
 
 }
 
 .topnav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     overflow: hidden;
+    padding: 2em;
     background-color: #1F1B1D;
-    margin-top: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
+
 }
 
 .topnav a, button a {
     float: left;
     display: block;
     color: #f2f2f2;
+    font-family: 'Raleway', sans-serif;
     text-align: center;
-    padding: 11px 16px;
+    padding: 0 2em;
     text-decoration: none;
-    font-size: 1.2em;
+    /*font-size: 1.2em;*/
+}
+
+.language-preferences a {
+    padding: 0.6em 0.5em;
+}
+
+.language-preferences {
+    margin-right: 1em;
 }
 
 .topnav a:hover, button a:hover {
@@ -104,11 +116,13 @@ h3 {
 }
 
 .topnav img {
-    max-height: 50px;
+    max-height: 2.5em;
     margin: auto;
     display: block;
     float: left;
 }
+
+/* End of header and navigation Styles */
 
 /*Slider Start*/
 * {
@@ -177,8 +191,8 @@ h3 {
 /* The dots/bullets/indicators */
 .dot {
     cursor: pointer;
-    height: 15px;
-    width: 15px;
+    height: 0.5em;
+    width: 0.5em;
     margin: 0 2px;
     background-color: #bbb;
     border-radius: 50%;
@@ -233,7 +247,16 @@ h3 {
 }
 
 /*Slider End*/
+
 /* Buttons */
+
+.btn {
+    border: none;
+    padding: 1em 2em;
+    font-family: 'Raleway', sans-serif;
+    background-color: #FFA70A;
+
+}
 
 .button {
     border: none;
@@ -344,36 +367,42 @@ h2.room-title {
 
 /* ----- PAGE ROOM ----- */
 
-/* Quest detailed info */
-.room-details-content {
-    /*padding: 6em;*/
+/* Quest detailed info section*/
+
+.room-details-content{
+  padding: 6em;
 }
 
 .short-description {
-    margin: 2em 0;
-    display: flex;
-    justify-content: center;
-    color: white;
+  margin: 2em 0;
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.9em;
+}
+
+.short-description-text {
+    margin: 0.5em 0;
     font-family: 'Raleway', sans-serif;
-    font-size: 0.9em;
 }
 
 .room-complexity {
     order: 1;
     margin: 0 4em;
-
+    text-align: center;
 }
 
 .room-time {
     order: 2;
     margin: 0 4em;
-
+    text-align: center;
 }
 
 .room-players {
     order: 3;
     margin: 0 4em;
-
+    text-align: center;
 }
 
 span.phone {
@@ -402,31 +431,83 @@ span.location {
 }
 
 .questroom-contact {
-    padding: 1em;
+  padding: 1em;
 }
 
 .contact-paragraph {
-    margin: 0 1em;
-    font-size: 0.8em;
+  margin: 0 1em;
+  font-size: 0.8em;
 }
 
 .phone {
-    margin-bottom: 1em;
+  margin-bottom: 1em;
 }
 
 .email {
-    margin-bottom: 1em;
+  margin-bottom: 1em;
 }
 
 .location {
-    margin-bottom: 1em;
+  margin-bottom: 1em;
+}
+
+.quest-booking-info {
+  display: flex;
+  justify-content:center;
 }
 
 .calendar {
-    width: 400px;
-    height: 400px;
+  width: 400px;
+  height: 400px;
+}
+
+.date-input {
+    color: white;
+    background-color: #0E0A07;
+    border: none;
+    padding: 1em 2em;
+    margin: 1em 0;
+    font-family: 'Raleway', sans-serif;
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.booking-hours {
+  margin: 0 2em;
+}
+
+input.input-booking {
+    display: block;
+    color: white;
+    background-color: #0E0A07;
+    border: none;
+    padding: 1em 2em;
+    margin: 1em 0;
+    font-family: 'Raleway', sans-serif;
+}
+
+.book-checkout {
+    width: -webkit-fill-available;
+    padding: 1em 2em;
+    background-color: #FFA70A;
+    border: none;
+    font-family: 'Raleway', sans-serif;
+}
+
+.hour-selector {
+    display: block;
+    color: white;
+    background-color: #0E0A07;
+    border: none;
+    padding: 1em 2em;
+    margin: 1em 0;
+    font-family: 'Raleway', sans-serif;
 
 }
+
+/* End Quest detailed Info Section*/
 
 footer {
 
@@ -574,9 +655,9 @@ footer {
     margin-bottom: 5px;
 }
 
-.feather-clock, .feather-map-pin {
-    margin-left: 20px;
-}
+/*.feather-clock, .feather-map-pin {*/
+/*    margin-left: 20px;*/
+/*}*/
 
 .franchise {
     margin-top: 30px;

@@ -12,8 +12,11 @@
 <div class="hero">
     <header class="header">
         <div class="topnav" id="myTopnav">
-            <img src="{% static 'images/logo.png' %}" alt="">
-            <a class="active-menu">
+            <span class="logo">
+                 <img src="{% static 'images/logo.png' %}" alt="">
+            </span>
+            <span class="pages-navigation">
+                <a href="{% url 'index' %}">
                 {% if request.session.lang == "ua" %}
                     Головна
                 {% endif %}
@@ -25,7 +28,7 @@
                 {% endif %}
 
             </a>
-            <a href="{% url 'about' %}">
+                <a href="{% url 'about' %}">
                 {% if request.session.lang == "ua" %}
                     Про нас
                 {% endif %}
@@ -36,7 +39,7 @@
                     О нас
                 {% endif %}
             </a>
-            <a href="{% url 'franchise' %}">
+                <a href="{% url 'franchise' %}">
                 {% if request.session.lang == "ua" %}
                     Франшиза
                 {% endif %}
@@ -48,44 +51,15 @@
                 {% endif %}
 
             </a>
-
-            <a
-                    {% if request.session.lang == "ua" %}
-                        class="language-active"
-                    {% else %}
-                        href="{% url 'change_language' "ua" %}"
-                        class="language"
-                    {% endif %}
-            >Ua</a>
-
-            <a
-                    {% if request.session.lang == "en" %}
-                        class="language-active"
-                    {% else %}
-                        href="{% url 'change_language' "en" %}"
-                        class="language"
-                    {% endif %}
-            >Eng</a>
-            <a
-                    {% if request.session.lang == "ru" %}
-                        class="language-active"
-                    {% else %}
-                        href="{% url 'change_language' "ru" %}"
-                        class="language"
-                    {% endif %}
-            >Ru</a>
-            {#            {% if request.session.lang != "ua" %}#}
-            {#                <form action="{% url 'change_language' %}" method="post">#}
-            {#                    {% csrf_token %}#}
-            {#                    <button type="submit" name="language" value="ua"><p>Ua</p></button>#}
-            {#                </form>#}
-            {#            {% endif %}#}
-            {#            {% if request.session.lang != "ru" %}#}
-            {#                <form action="{% url 'change_language' %}" method="post">#}
-            {#                    {% csrf_token %}#}
-            {#                    <button type="submit" name="language" value="ru"><p>Ru</p></button>#}
-            {#                </form>#}
-            {#            {% endif %}#}
+            </span>
+            <span class="navigation-preferences">
+                <span class="language-preferences">
+                <a{% if request.session.lang == "ua" %} class="language-active"{% else %} href="{% url 'change_language' "ua" %}" class="language" {% endif %}>Ua</a>
+                <a{% if request.session.lang == "en" %} class="language-active" {% else %} href="{% url 'change_language' "en" %}" class="language" {% endif %}>Eng</a>
+                <a{% if request.session.lang == "ru" %} class="language-active" {% else %} href="{% url 'change_language' "ru" %}" class="language" {% endif %}>Ru</a>
+            </span>
+                <button type="button" class="btn">Квести</button>
+            </span>
 
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                 <img src="images/icons/lock.svg">
@@ -125,7 +99,6 @@
 </div>
 
 <div class="rooms" id="rooms">
-    <hr>
     <h3 class="roomsHeader">
         {% if request.session.lang == "ua" %}
             Наші Квести:
@@ -241,10 +214,7 @@
 </div>
 
 <footer class="footer-distributed">
-
     <div class="footer-left">
-
-        <!-- <h3>WebDev<span>Trick</span></h3> -->
         <img src="images/logo.png" alt="">
         <p class="footer-links">
             <a href="#">
@@ -304,16 +274,6 @@
                         ул. Название улици, 23
                     {% endif %}
                 </span>
-
-                {% if request.session.lang == "ua" %}
-                    м. Львів
-                {% endif %}
-                {% if request.session.lang == "en" %}
-                    Lviv
-                {% endif %}
-                {% if request.session.lang == "ru" %}
-                    г. Львов
-                {% endif %}
             </p>
         </div>
 
