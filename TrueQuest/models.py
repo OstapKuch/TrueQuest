@@ -58,5 +58,5 @@ class RoomReservation(models.Model):
     name = models.CharField(max_length=45)
     status = models.CharField(max_length=15, choices=RESERVATIONS_STATUS_CHOICES)
 
-    def __str__(self):
-        return self.reservation_date
+    def str(self):
+        return self.name + " " + self.phone_number + " " + str(self.reservation_date)

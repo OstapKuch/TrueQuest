@@ -1,5 +1,10 @@
 console.log("JS file is working");
 
+function doWithThisElement(button) {
+    button.className = 'hour-selector selected';
+}
+
+
 function myFunction() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
