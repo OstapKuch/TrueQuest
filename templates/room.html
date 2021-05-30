@@ -237,19 +237,18 @@
         </div>
           <div class="quest-booking-info">
             <div class="calendar">
-             <input type="date" placeholder="Виберіть дату" class="date-input" style="margin-left: 120px;" min="2021-05-27" max="2021-06-15">
+             <input type="date" placeholder="Виберіть дату" class="date-input" min="2021-05-27" max="2021-06-15" required>
             </div>
             <div class="booking-hours">
-                <button onclick="doWithThisElement(this)" type="button" name="button" id="1" class="hour-selector disabled">10:00 - 11:00</button>
-                <button onclick="doWithThisElement(this)" type="button" name="button" id="2" class="hour-selector">11:00 - 12:00</button>
-                <button onclick="doWithThisElement(this)" type="button" name="button" id="3" class="hour-selector">12:00 - 13:00</button>
-
+                <button type="button" name="button" id="1" class="hour-selector disabled">10:00 - 11:00</button>
+                <button type="button" name="button" id="2" class="hour-selector">11:00 - 12:00</button>
+                <button type="button" name="button" id="3" class="hour-selector">12:00 - 13:00</button>
             </div>
             <div class="registration-input-fields">
                 <form action="{% url 'book_room' quest_room.id %}" method="post">
                     {% csrf_token %}
-                    <input type="text" name="name" class="input-booking" value="" placeholder="Name">
-                    <input type="text" name="phone" class="input-booking" value="" placeholder="Phone">
+                    <input type="text" name="name" class="input-booking" value="" placeholder="Name" required>
+                    <input type="text" name="phone" class="input-booking" value="" placeholder="Phone" required>
                     <input type="text" name="email" class="input-booking" value="" placeholder="Email">
                     <button type="submit" name="time" class="book-checkout">Забронювати</button>
                 </form>
@@ -265,10 +264,13 @@
 <script>
     var picker = new Pikaday({field: document.getElementById('datepicker')});
 </script>
-<script type="text/javascript" src="{% static 'dycalendar.js' %}"></script>
-<script src="{% static 'js/vanilla-calendar-min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery-3.6.0.js' %}"></script>
 
-<script type="text/javascript" src="{% static 'dycalendar.min.js' %}"></script>
+<script>
+    $(document).on('click', 'button', function () {
+        $(this).addClass('hour-selector selected').siblings().removeClass('selected')
+    })
+</script>
 </body>
 </html>

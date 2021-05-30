@@ -1,8 +1,9 @@
 console.log("JS file is working");
 
-function doWithThisElement(button) {
-    button.className = 'hour-selector selected';
-}
+// function doWithThisElement(button) {
+//     button.className = 'hour-selector selected';
+//
+// }
 
 
 function myFunction() {
@@ -65,3 +66,11 @@ var scrollToElement = function(el, ms){
 
 // specify id of element and optional scroll speed as arguments
 // scrollToElement('#timeindicatordiv', 600);
+
+
+// ------------------ Changing the hour selection buttons state
+
+// TODO: Fix the bug - Adding styles to all buttons
+$(document).on('click', 'button', function () {
+        $(this).addClass('hour-selector selected').siblings().removeClass('selected')
+    })
