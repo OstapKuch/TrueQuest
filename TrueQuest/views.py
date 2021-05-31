@@ -1,13 +1,6 @@
-from django.conf import settings
-from django.conf.global_settings import STATIC_ROOT
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import QuestRoom, Image, RoomReservation
 from django.core.mail import send_mail
-
-
-
-# someone clicks the link to change to English
 from .settings import DEFAULT_RECIPIENT
 
 
@@ -23,7 +16,21 @@ def room(request, room_id, message=None):
     request = sessions(request)
     quest_room = QuestRoom.objects.get(pk=room_id)
     image = Image.objects.get(quest_id=room_id, is_main_image=1)
-    return render(request, 'room.html', {'quest_room': quest_room, 'image_url': image.image.url})
+    # reservation = RoomReservation.objects.get(quest_room_id=room_id, status="ACTIVE")
+    duration_min = (quest_room.room_closes_at.hour * 60 + quest_room.room_closes_at.minute) - (
+            quest_room.room_opens_at.hour * 60 + quest_room.room_closes_at.minute)
+    count_quests_per_day = int(duration_min / quest_room.quest_duration)
+    room_hours = []
+    quest_time_finish = quest_room.room_opens_at
+    for i in range(0, count_quests_per_day):
+        quest_start_time = quest_time_finish
+        quest_time_finish = add_minutes(quest_time_finish, quest_room.quest_duration)
+        room_hours.append(["{:d}:{:02d}".format(quest_start_time.hour, quest_start_time.minute),
+                           "{:d}:{:02d}".format(quest_time_finish.hour, quest_time_finish.minute), "1"])
+    print(room_hours)
+    return render(request, 'room.html', {'quest_room': quest_room,
+                                         'image_url': image.image.url,
+                                         'reservations': room_hours})
 
 
 def book_room(request, room_id):
@@ -59,7 +66,6 @@ def sessions(_request):
 
 
 def change_language(request, language):
-    # language = request.POST['language']
     request.session['lang'] = language
     return redirect("index")
 
@@ -68,7 +74,7 @@ def send_email(recipient):
     send_mail(
         'Бронювання кімнати',
         'Here is the message.',
-        'trueQuest@quest.com',
+        't.r.u.e.0q.u.e.s.t@gmail.com',
         [recipient],
         fail_silently=False,
     )
@@ -80,3 +86,17 @@ def franchise(request):
 
 def about(request):
     return render(request, 'about.html')
+
+
+def add_minutes(start_time, minutes):
+    hours = start_time.hour
+    minutes = start_time.minute + minutes
+    if minutes >= 60:
+        minutes = minutes - 60
+        hours += 1
+    start_time = start_time.replace(hour=hours)
+    start_time = start_time.replace(minute=minutes)
+    return start_time
+
+
+

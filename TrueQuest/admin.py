@@ -5,7 +5,7 @@ from .models import QuestRoom, Image, RoomReservation
 class QuestRoomAdmin(admin.ModelAdmin):
     fields = ('title', 'description', 'min_person_amount', 'max_person_amount',
               'title_en', 'description_en', 'title_ru', 'description_ru', 'quest_duration',
-              'difficulty', 'location')
+              'difficulty', 'location', 'room_opens_at', 'room_closes_at')
 
 
 @admin.register(Image)

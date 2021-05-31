@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-@r59p)9$hf(6(btd8n^k+i*1b3_b&esr#9&b=^suxdmzynt)08'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", "False") == "True"
+DEBUG = "True"
 
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -117,8 +117,8 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "TrueQuest/TrueQuest/media"
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
-    # '/static',
-    # os.path.join(os.path.dirname(BASE_DIR), "TrueQuest/TrueQuest/media")
+    '/static',
+    os.path.join(os.path.dirname(BASE_DIR), "TrueQuest/TrueQuest/media")
     # BASE_DIR  '/static'
 ]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

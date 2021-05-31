@@ -23,43 +23,49 @@
                 {% if request.session.lang == "ua" %}
                     Головна
                 {% endif %}
-                {% if request.session.lang == "en" %}
-                    Main
-                {% endif %}
-                {% if request.session.lang == "ru" %}
-                    Главная
-                {% endif %}
+                    {% if request.session.lang == "en" %}
+                        Main
+                    {% endif %}
+                    {% if request.session.lang == "ru" %}
+                        Главная
+                    {% endif %}
 
             </a>
                 <a href="{% url 'about' %}">
                 {% if request.session.lang == "ua" %}
                     Про нас
                 {% endif %}
-                {% if request.session.lang == "en" %}
-                    About Us
-                {% endif %}
-                {% if request.session.lang == "ru" %}
-                    О нас
-                {% endif %}
+                    {% if request.session.lang == "en" %}
+                        About Us
+                    {% endif %}
+                    {% if request.session.lang == "ru" %}
+                        О нас
+                    {% endif %}
             </a>
                 <a href="{% url 'franchise' %}">
                 {% if request.session.lang == "ua" %}
                     Франшиза
                 {% endif %}
-                {% if request.session.lang == "en" %}
-                    Franchise
-                {% endif %}
-                {% if request.session.lang == "ru" %}
-                    Франшиза
-                {% endif %}
+                    {% if request.session.lang == "en" %}
+                        Franchise
+                    {% endif %}
+                    {% if request.session.lang == "ru" %}
+                        Франшиза
+                    {% endif %}
 
             </a>
             </span>
             <span class="navigation-preferences">
                 <span class="language-preferences">
-                <a{% if request.session.lang == "ua" %} class="language-active"{% else %} href="{% url 'change_language' "ua" %}" class="language" {% endif %}>Ua</a>
-                <a{% if request.session.lang == "en" %} class="language-active" {% else %} href="{% url 'change_language' "en" %}" class="language" {% endif %}>Eng</a>
-                <a{% if request.session.lang == "ru" %} class="language-active" {% else %} href="{% url 'change_language' "ru" %}" class="language" {% endif %}>Ru</a>
+                <a{% if request.session.lang == "ua" %} class="language-active"{% else %}
+                                                        href="{% url 'change_language' "ua" %}"
+                                                        class="language" {% endif %}>Ua</a>
+                <a{% if request.session.lang == "en" %} class="language-active" {% else %}
+                                                        href="{% url 'change_language' "en" %}"
+                                                        class="language" {% endif %}>Eng</a>
+                <a{% if request.session.lang == "ru" %} class="language-active" {% else %}
+                                                        href="{% url 'change_language' "ru" %}"
+                                                        class="language" {% endif %}>Ru</a>
             </span>
                 <button type="button" class="btn">Квести</button>
             </span>
@@ -97,34 +103,34 @@
     </div>
 
     <div class="room-details-content">
-          <div class="short-description">
+        <div class="short-description">
               <span class="room-complexity">
                 {% for i in "12345" %}
                     {% if forloop.counter > quest_room.difficulty %}
                         <svg xmlns="http://www.w3.org/2000/svg"
-                          width="18"
-                          height="18"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="#5A402D"
-                          stroke-width="3"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="feather feather-lock">
+                             width="18"
+                             height="18"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="#5A402D"
+                             stroke-width="3"
+                             stroke-linecap="round"
+                             stroke-linejoin="round"
+                             class="feather feather-lock">
                          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                      </svg>
                     {% else %}
                         <svg xmlns="http://www.w3.org/2000/svg"
-                          width="18"
-                          height="18"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="#FFA70A"
-                          stroke-width="3"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="feather feather-lock">
+                             width="18"
+                             height="18"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="#FFA70A"
+                             stroke-width="3"
+                             stroke-linecap="round"
+                             stroke-linejoin="round"
+                             class="feather feather-lock">
                          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                      </svg>
@@ -134,25 +140,25 @@
                   {% if request.session.lang == "ua" %}
                       Складність
                   {% endif %}
-                  {% if request.session.lang == "en" %}
-                        Complexity
-                  {% endif %}
-                  {% if request.session.lang == "ru" %}
-                        Сложность
-                  {% endif %}
+                      {% if request.session.lang == "en" %}
+                          Complexity
+                      {% endif %}
+                      {% if request.session.lang == "ru" %}
+                          Сложность
+                      {% endif %}
               </p>
               </span>
-              <span class="room-time">
+            <span class="room-time">
                 <svg xmlns="http://www.w3.org/2000/svg"
-                   width="18"
-                   height="18"
-                   viewBox="0 0 24 24"
-                   fill="none"
-                   stroke="#FFA70A"
-                   stroke-width="3"
-                   stroke-linecap="round"
-                   stroke-linejoin="round"
-                   class="feather feather-clock">
+                     width="18"
+                     height="18"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="#FFA70A"
+                     stroke-width="3"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     class="feather feather-clock">
                   <circle cx="12" cy="12" r="10"></circle>
                   <polyline points="12 6 12 12 16 14"></polyline>
                 </svg> {{ quest_room.quest_duration }}
@@ -168,7 +174,7 @@
                     {% endif %}
                 </p>
             </span>
-              <span class="room-players">
+            <span class="room-players">
                 <svg xmlns="http://www.w3.org/2000/svg"
                      width="18"
                      height="18"
@@ -186,16 +192,16 @@
                   {% if request.session.lang == "ua" %}
                       Гравці
                   {% endif %}
-                  {% if request.session.lang == "en" %}
-                      Players
-                  {% endif %}
-                  {% if request.session.lang == "ru" %}
-                      Игроки
-                  {% endif %}
+                    {% if request.session.lang == "en" %}
+                        Players
+                    {% endif %}
+                    {% if request.session.lang == "ru" %}
+                        Игроки
+                    {% endif %}
                 </p>
             </span>
         </div>
-          <div class="quest-detailed-info">
+        <div class="quest-detailed-info">
             <div class="detailed-text">
                 <p class="detailed-paragraph">
                     {% if request.session.lang == "ua" %}
@@ -235,26 +241,37 @@
 
             </div>
         </div>
-          <div class="quest-booking-info">
+        <div class="quest-booking-info">
             <div class="calendar">
-             <input type="date" placeholder="Виберіть дату" class="date-input" min="2021-05-27" max="2021-06-15" required>
+                <input type="date" placeholder="Виберіть дату" class="date-input" min="2021-05-27" max="2021-06-15"
+                       required>
             </div>
             <div class="booking-hours">
-                <button type="button" name="button" id="1" class="hour-selector disabled">10:00 - 11:00</button>
-                <button type="button" name="button" id="2" class="hour-selector">11:00 - 12:00</button>
-                <button type="button" name="button" id="3" class="hour-selector">12:00 - 13:00</button>
+                {#                <button type="button" name="button" id="1" class="hour-selector disabled">10:00 - 11:00</button>#}
+                {#                <button type="button" name="button" id="2" class="hour-selector">11:00 - 12:00</button>#}
+                {#                <button type="button" name="button" id="3" class="hour-selector">12:00 - 13:00</button>#}
+                {% for reservation in reservations %}
+                    <button type="button" name="button" id="{{ forloop.counter }}"
+                            class="hour-selector
+                            {% if reservation.2 == "0" %}
+                            disabled
+                            {% endif %}
+                            ">
+                        {{ reservation.0 }} - {{ reservation.1 }}
+                    </button>
+                {% endfor %}
             </div>
             <div class="registration-input-fields">
                 <form action="{% url 'book_room' quest_room.id %}" method="post">
                     {% csrf_token %}
                     <input type="text" name="name" class="input-booking" value="" placeholder="Name" required>
                     <input type="text" name="phone" class="input-booking" value="" placeholder="Phone" required>
-                    <input type="text" name="email" class="input-booking" value="" placeholder="Email">
+                    {#                    <input type="text" name="email" class="input-booking" value="" placeholder="Email">#}
                     <button type="submit" name="time" class="book-checkout">Забронювати</button>
                 </form>
             </div>
-          </div>
-      </div>
+        </div>
+    </div>
 
 
 </div>

@@ -32,6 +32,8 @@ class QuestRoom(models.Model):
     difficulty = models.IntegerField(choices=QUEST_DIFFICULTY)
     quest_duration = models.IntegerField(help_text="час прохдження кімнати в хв")
     age = models.IntegerField
+    room_opens_at = models.TimeField()
+    room_closes_at = models.TimeField()
 
     def __str__(self):
         return self.title

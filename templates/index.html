@@ -20,42 +20,48 @@
                 {% if request.session.lang == "ua" %}
                     Головна
                 {% endif %}
-                {% if request.session.lang == "en" %}
-                    Main
-                {% endif %}
-                {% if request.session.lang == "ru" %}
-                    Главная
-                {% endif %}
+                    {% if request.session.lang == "en" %}
+                        Main
+                    {% endif %}
+                    {% if request.session.lang == "ru" %}
+                        Главная
+                    {% endif %}
                 </a>
                 <a href="{% url 'about' %}">
                 {% if request.session.lang == "ua" %}
                     Про нас
                 {% endif %}
-                {% if request.session.lang == "en" %}
-                    About Us
-                {% endif %}
-                {% if request.session.lang == "ru" %}
-                    О нас
-                {% endif %}
+                    {% if request.session.lang == "en" %}
+                        About Us
+                    {% endif %}
+                    {% if request.session.lang == "ru" %}
+                        О нас
+                    {% endif %}
             </a>
                 <a href="{% url 'franchise' %}">
                 {% if request.session.lang == "ua" %}
                     Франшиза
                 {% endif %}
-                {% if request.session.lang == "en" %}
-                    Franchise
-                {% endif %}
-                {% if request.session.lang == "ru" %}
-                    Франшиза
-                {% endif %}
+                    {% if request.session.lang == "en" %}
+                        Franchise
+                    {% endif %}
+                    {% if request.session.lang == "ru" %}
+                        Франшиза
+                    {% endif %}
 
             </a>
             </span>
             <span class="navigation-preferences">
                 <span class="language-preferences">
-                <a{% if request.session.lang == "ua" %} class="language-active"{% else %} href="{% url 'change_language' "ua" %}" class="language" {% endif %}>Ua</a>
-                <a{% if request.session.lang == "en" %} class="language-active" {% else %} href="{% url 'change_language' "en" %}" class="language" {% endif %}>Eng</a>
-                <a{% if request.session.lang == "ru" %} class="language-active" {% else %} href="{% url 'change_language' "ru" %}" class="language" {% endif %}>Ru</a>
+                <a{% if request.session.lang == "ua" %} class="language-active"{% else %}
+                                                        href="{% url 'change_language' "ua" %}"
+                                                        class="language" {% endif %}>Ua</a>
+                <a{% if request.session.lang == "en" %} class="language-active" {% else %}
+                                                        href="{% url 'change_language' "en" %}"
+                                                        class="language" {% endif %}>Eng</a>
+                <a{% if request.session.lang == "ru" %} class="language-active" {% else %}
+                                                        href="{% url 'change_language' "ru" %}"
+                                                        class="language" {% endif %}>Ru</a>
             </span>
                 <button type="button" class="btn">Квести</button>
             </span>
@@ -276,8 +282,13 @@
             <i class="fa fa-map-marker"></i>
             <p>
                 <span>
+                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                      stroke="#FFA70A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                      class="feather feather-phone"><path
+                         d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+
                     {% if request.session.lang == "ua" %}
-                        Львів, вул.Назва вулиці, 1
+                        <a href="https://goo.gl/maps/cvAy5TNhYX7N1zEb9">Львів, вул. Енергетична 4</a>
                     {% endif %}
                     {% if request.session.lang == "en" %}
                         Street name, 23
@@ -290,13 +301,30 @@
         </div>
 
         <div>
+
             <i class="fa fa-phone"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                 stroke="#FFA70A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                 class="feather feather-mail">
+                <path
+                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline
+                        points="22,6 12,13 2,6"></polyline>
+            </svg>
             <p><a href="tel:097-000-0000">+38 097 0000000</a></p>
         </div>
 
         <div>
+
             <i class="fa fa-envelope"></i>
-            <p><a href="mailto:TrueQuest@gmail.com">TrueQuest@gmail.com</a></p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                 stroke="#FFA70A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                 class="feather feather-map-pin">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle
+                        cx="12" cy="10" r="3"></circle>
+            </svg>
+            <p><a href="mailto:t.r.u.e.0q.u.e.s.t@gmail.com">t.r.u.e.0q.u.e.s.t@gmail.com</a></p>
         </div>
 
     </div>
@@ -329,7 +357,7 @@
 
         <div class="footer-icons">
 
-            <a href="#">
+            <a href="https://www.instagram.com/true.quest">
                 <svg xmlns="http://www.w3.org/2000/svg"
                      width="24"
                      height="24"
