@@ -13,7 +13,8 @@ urlpatterns = [
     path('language/<str:language>', views.change_language, name='change_language'),
     path('admin/', admin.site.urls),
     path('franchise/', views.franchise, name='franchise'),
-    path('about/', views.about, name='about')
+    path('about/', views.about, name='about'),
+    path('get_reservations/', views.get_reservations, name='get_reservations')
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
