@@ -87,17 +87,26 @@
     <div class="hero-text">
         <h1 class="hero-h1">
             {% if request.session.lang == "ua" %}
-                Квест, котрий захоплює
+                Зміни свою буденність, на годину у новому просторі
             {% endif %}
             {% if request.session.lang == "en" %}
-                Fascinating quest
+                Change your routine, for an hour in a new space
             {% endif %}
             {% if request.session.lang == "ru" %}
-                Квест, который захватывает
+                Смените свою обыденность на час в новом месте
             {% endif %}
         </h1>
-        <h3 class="hero-h3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.</h3>
+        <h3 class="hero-h3">
+            {% if request.session.lang == "ua" %}
+                Твоя рутина тебе з'їдає, розривай шаблони, експериментуй та мрій разом з нами!
+            {% endif %}
+            {% if request.session.lang == "en" %}
+                Your routine eats you up, break your patterns, experiment and dream with us!
+            {% endif %}
+            {% if request.session.lang == "ru" %}
+                Ваш распорядок съедает вас, ломайте привычки, экспериментируйте и мечтайте вместе с нами!
+            {% endif %}
+        </h3>
         <button class="button button1"
                 onClick="document.getElementById('rooms').scrollIntoView();"
                 {#             onClick="scrollToElement('#rooms', 600);"#}
@@ -189,7 +198,7 @@
                       вул. Назва вулиці, 23
                   {% endif %}
                   {% if request.session.lang == "en" %}
-                      Street name, 23
+                      Enerhetychna St, 4
                   {% endif %}
                   {% if request.session.lang == "ru" %}
                       ул. Название улици, 23
@@ -291,10 +300,12 @@
                         <a href="https://goo.gl/maps/cvAy5TNhYX7N1zEb9">Львів, вул. Енергетична 4</a>
                     {% endif %}
                     {% if request.session.lang == "en" %}
-                        Street name, 23
+                        <a href="https://goo.gl/maps/cvAy5TNhYX7N1zEb9">Enerhetychna St, 4</a>
+
+
                     {% endif %}
                     {% if request.session.lang == "ru" %}
-                        ул. Название улици, 23
+                        <a href="https://goo.gl/maps/cvAy5TNhYX7N1zEb9">Львов, ул. Енергетическая 4</a>
                     {% endif %}
                 </span>
             </p>
@@ -311,7 +322,7 @@
                 <polyline
                         points="22,6 12,13 2,6"></polyline>
             </svg>
-            <p><a href="tel:097-000-0000">+38 097 0000000</a></p>
+            <p><a href="tel:380632022343">+38 063 20 223 43</a></p>
         </div>
 
         <div>

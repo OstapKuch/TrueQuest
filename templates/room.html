@@ -242,34 +242,39 @@
             </div>
         </div>
         <div class="quest-booking-info">
-            <div class="calendar">
-                <input type="date" placeholder="Виберіть дату" class="date-input" min="2021-05-27" max="2021-06-15"
-                       required>
-            </div>
-            <div class="booking-hours">
-                {#                <button type="button" name="button" id="1" class="hour-selector disabled">10:00 - 11:00</button>#}
-                {#                <button type="button" name="button" id="2" class="hour-selector">11:00 - 12:00</button>#}
-                {#                <button type="button" name="button" id="3" class="hour-selector">12:00 - 13:00</button>#}
-                {% for reservation in reservations %}
-                    <button type="button" name="button" id="{{ forloop.counter }}"
-                            class="hour-selector
+            <form action="{% url 'book_room' quest_room.id %}" method="post">
+                {% csrf_token %}
+                <div class="calendar">
+                    <input type="date" name="date" onchange="get_data(this.value, {{ quest_room.pk }})"
+                           placeholder="Виберіть дату" value="{{ current_date }}" class="date-input"
+                           min="{{ current_date }}"
+                           max="2021-06-15"
+                           required>
+                </div>
+                <div class="booking-hours">
+                    {#                <button type="button" name="button" id="1" class="hour-selector disabled">10:00 - 11:00</button>#}
+                    {#                <button type="button" name="button" id="2" class="hour-selector">11:00 - 12:00</button>#}
+                    {#                <button type="button" name="button" id="3" class="hour-selector">12:00 - 13:00</button>#}
+                    {% for reservation in reservations %}
+                        <button type="button" value="{{ reservation.0 }}" id="{{ forloop.counter }}"
+                                class="hour-selector
                             {% if reservation.2 == "0" %}
                             disabled
                             {% endif %}
                             ">
-                        {{ reservation.0 }} - {{ reservation.1 }}
-                    </button>
-                {% endfor %}
-            </div>
-            <div class="registration-input-fields">
-                <form action="{% url 'book_room' quest_room.id %}" method="post">
-                    {% csrf_token %}
+                            {{ reservation.0 }} - {{ reservation.1 }}
+                        </button>
+                    {% endfor %}
+                </div>
+                <div class="registration-input-fields">
+
                     <input type="text" name="name" class="input-booking" value="" placeholder="Name" required>
                     <input type="text" name="phone" class="input-booking" value="" placeholder="Phone" required>
-                    {#                    <input type="text" name="email" class="input-booking" value="" placeholder="Email">#}
-                    <button type="submit" name="time" class="book-checkout">Забронювати</button>
-                </form>
-            </div>
+                    <input type="text" id="time-att" name="chosen_time" value="" style="display: none">
+                    <button type="submit" class="book-checkout">Забронювати</button>
+                </div>
+            </form>
+
         </div>
     </div>
 
@@ -286,8 +291,37 @@
 
 <script>
     $(document).on('click', 'button', function () {
-        $(this).addClass('hour-selector selected').siblings().removeClass('selected')
+        console.log($(this).hasClass('hour-selector'))
+        if ($(this).hasClass('hour-selector')) {
+            $(this).addClass('hour-selector selected').siblings().removeClass('selected')
+            $("#time-att").attr("value", this.value)
+        }
+
+        {#$(this).attr("name", "time").siblings().attr("name", "button")#}
+        {#console.log(this.value)#}
     })
+
+
+    function get_data(chosen_date, room) {
+        $.ajax({
+            type: 'get',
+            url: '{% url "get_reservations" %}',
+            data: {"room_id": room, "chosen_date": chosen_date},
+            datatype: 'json',
+            success: function (data) {
+                console.log(data)
+                element = $(".hour-selector").removeClass("disabled")
+                element = $(".hour-selector").removeClass("selected")
+                for (c = 1; c < data.length; c++) {
+                    if(data[c][2] === "0") {
+                        element = $("#" + c).addClass("disabled")
+                    }
+                }
+            },
+            error: console.log("SSS"),
+
+        });
+    }
 </script>
 </body>
 </html>

@@ -43,43 +43,49 @@
                 {% if request.session.lang == "ua" %}
                     Головна
                 {% endif %}
-                {% if request.session.lang == "en" %}
-                    Main
-                {% endif %}
-                {% if request.session.lang == "ru" %}
-                    Главная
-                {% endif %}
+                    {% if request.session.lang == "en" %}
+                        Main
+                    {% endif %}
+                    {% if request.session.lang == "ru" %}
+                        Главная
+                    {% endif %}
 
             </a>
                 <a href="{% url 'about' %}">
                 {% if request.session.lang == "ua" %}
                     Про нас
                 {% endif %}
-                {% if request.session.lang == "en" %}
-                    About Us
-                {% endif %}
-                {% if request.session.lang == "ru" %}
-                    О нас
-                {% endif %}
+                    {% if request.session.lang == "en" %}
+                        About Us
+                    {% endif %}
+                    {% if request.session.lang == "ru" %}
+                        О нас
+                    {% endif %}
             </a>
                 <a href="{% url 'franchise' %}">
                 {% if request.session.lang == "ua" %}
                     Франшиза
                 {% endif %}
-                {% if request.session.lang == "en" %}
-                    Franchise
-                {% endif %}
-                {% if request.session.lang == "ru" %}
-                    Франшиза
-                {% endif %}
+                    {% if request.session.lang == "en" %}
+                        Franchise
+                    {% endif %}
+                    {% if request.session.lang == "ru" %}
+                        Франшиза
+                    {% endif %}
 
             </a>
             </span>
             <span class="navigation-preferences">
                 <span class="language-preferences">
-                <a{% if request.session.lang == "ua" %} class="language-active"{% else %} href="{% url 'change_language' "ua" %}" class="language" {% endif %}>Ua</a>
-                <a{% if request.session.lang == "en" %} class="language-active" {% else %} href="{% url 'change_language' "en" %}" class="language" {% endif %}>Eng</a>
-                <a{% if request.session.lang == "ru" %} class="language-active" {% else %} href="{% url 'change_language' "ru" %}" class="language" {% endif %}>Ru</a>
+                <a{% if request.session.lang == "ua" %} class="language-active"{% else %}
+                                                        href="{% url 'change_language' "ua" %}"
+                                                        class="language" {% endif %}>Ua</a>
+                <a{% if request.session.lang == "en" %} class="language-active" {% else %}
+                                                        href="{% url 'change_language' "en" %}"
+                                                        class="language" {% endif %}>Eng</a>
+                <a{% if request.session.lang == "ru" %} class="language-active" {% else %}
+                                                        href="{% url 'change_language' "ru" %}"
+                                                        class="language" {% endif %}>Ru</a>
             </span>
                 <button type="button" class="btn">Квести</button>
             </span>
@@ -94,31 +100,47 @@
     <!-- The dots/circles -->
 
     <div class="room-details-content">
-    <div class="franchise">
-        <h3 style="text-align: center;">
-            {% if request.session.lang == "ua" %}
-                Франшиза
-            {% endif %}
-            {% if request.session.lang == "en" %}
-                Franchise
-            {% endif %}
-            {% if request.session.lang == "ru" %}
-                Франшиза
-            {% endif %}
-        </h3>
-        <div class="quest-detailed-info">
+        <div class="franchise">
+            <h3 style="text-align: center;">
+                {% if request.session.lang == "ua" %}
+                    Франшиза
+                {% endif %}
+                {% if request.session.lang == "en" %}
+                    Franchise
+                {% endif %}
+                {% if request.session.lang == "ru" %}
+                    Франшиза
+                {% endif %}
+            </h3>
+            <div class="quest-detailed-info">
 
-            <div class="detailed-text">
-                <p class="detailed-paragraph">TRUE QUEST означає справжній квест, рішення про назву прийшло до нас
-                    абсолютно спонтанно і при досить рутинних обставинах. Наш дизайнер сидів у гарному закладі в центрі
-                    Львова і потягував смачну каву, якою так славиться наше місто і раптом, навіть не задумуючись,
-                    мимохідь, сказав, що йому потрібне щось справжнє, те, за що він буде готовий віддати гроші не
-                    шкодуючи і отримуючи задоволення. Справжній квест, подумали ми, не вичурна незрозуміла назва, а щось
-                    звичайне і, водночас те, чого не вистачає, те, що наче є, але, що складно знайти – справжність. Ось
-                    так справжня кава старого Львова піднесла неочікуваний результат наших міркувань. </p>
+                <div class="detailed-text">
+                    <p class="detailed-paragraph">
+                        {% if request.session.lang == "ua" %}
+                            TRUE QUEST означає справжній квест, а окрім цього – це можливість для всіх охочих створити
+                            власний
+                            бізнес. Якщо маєте цікаві пропозиції або хочете співпрацювати пишіть на нашу електронну
+                            адресу
+                            t.r.u.e.0q.u.e.s.t@gmail.com
+                        {% endif %}
+                        {% if request.session.lang == "en" %}
+                            TRUE QUEST means a real quest, and in addition it is an opportunity for everyone to create
+                            own
+                            business. If you have interesting proposals or want to cooperate, write to our e-mail
+                            address
+                            t.r.u.e.0q.u.e.s.t@gmail.com
+                        {% endif %}
+                        {% if request.session.lang == "ru" %}
+                            TRUE QUEST - это настоящий квест, а, кроме того, это возможность каждому создать свой
+                            бизнес. Если у вас есть интересные предложения или вы хотите сотрудничать, напишите нам на
+                            электронную почту
+                            t.r.u.e.0q.u.e.s.t@gmail.com
+                        {% endif %}
+
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
 
     </div>
 

@@ -43,43 +43,49 @@
                 {% if request.session.lang == "ua" %}
                     Головна
                 {% endif %}
-                {% if request.session.lang == "en" %}
-                    Main
-                {% endif %}
-                {% if request.session.lang == "ru" %}
-                    Главная
-                {% endif %}
+                    {% if request.session.lang == "en" %}
+                        Main
+                    {% endif %}
+                    {% if request.session.lang == "ru" %}
+                        Главная
+                    {% endif %}
 
             </a>
                 <a href="{% url 'about' %}">
                 {% if request.session.lang == "ua" %}
                     Про нас
                 {% endif %}
-                {% if request.session.lang == "en" %}
-                    About Us
-                {% endif %}
-                {% if request.session.lang == "ru" %}
-                    О нас
-                {% endif %}
+                    {% if request.session.lang == "en" %}
+                        About Us
+                    {% endif %}
+                    {% if request.session.lang == "ru" %}
+                        О нас
+                    {% endif %}
             </a>
                 <a href="{% url 'franchise' %}">
                 {% if request.session.lang == "ua" %}
                     Франшиза
                 {% endif %}
-                {% if request.session.lang == "en" %}
-                    Franchise
-                {% endif %}
-                {% if request.session.lang == "ru" %}
-                    Франшиза
-                {% endif %}
+                    {% if request.session.lang == "en" %}
+                        Franchise
+                    {% endif %}
+                    {% if request.session.lang == "ru" %}
+                        Франшиза
+                    {% endif %}
 
             </a>
             </span>
             <span class="navigation-preferences">
                 <span class="language-preferences">
-                <a{% if request.session.lang == "ua" %} class="language-active"{% else %} href="{% url 'change_language' "ua" %}" class="language" {% endif %}>Ua</a>
-                <a{% if request.session.lang == "en" %} class="language-active" {% else %} href="{% url 'change_language' "en" %}" class="language" {% endif %}>Eng</a>
-                <a{% if request.session.lang == "ru" %} class="language-active" {% else %} href="{% url 'change_language' "ru" %}" class="language" {% endif %}>Ru</a>
+                <a{% if request.session.lang == "ua" %} class="language-active"{% else %}
+                                                        href="{% url 'change_language' "ua" %}"
+                                                        class="language" {% endif %}>Ua</a>
+                <a{% if request.session.lang == "en" %} class="language-active" {% else %}
+                                                        href="{% url 'change_language' "en" %}"
+                                                        class="language" {% endif %}>Eng</a>
+                <a{% if request.session.lang == "ru" %} class="language-active" {% else %}
+                                                        href="{% url 'change_language' "ru" %}"
+                                                        class="language" {% endif %}>Ru</a>
             </span>
                 <button type="button" class="btn">Квести</button>
             </span>
@@ -109,52 +115,218 @@
             <div class="quest-detailed-info">
 
                 <div class="detailed-text">
-                    <p class="detailed-paragraph">TRUE QUEST – це абсолютно нове бачення старого. Наша команда протягом
-                        довгого часу відвідувала різні квест-кімнати в різних містах нашої рідної країни і ми помітили
-                        дещо, що узагальнювало всі квести – це пристосування до приміщення. Ми вирішили піти від іншого
-                        – пристосувати приміщенні під квест, тому в наших квестах все надзвичайно реалістичне, бо кожен
-                        елемент створювався з тим, а як на це буде дивитися гравець, чи не буде побудована реальність
-                        виглядати дешево і повертати гравця назад у буденність. Наша основна ціль надати гравцям те,
-                        чого ми не знайшли у всіх інших. Це велика робота над помилками, яку ми робили, робимо і будемо
-                        робити, тому що не існує ідеалів, але до них потрібно постійно крокувати. Це ми зробимо разом з
-                        Вами, бо ми також гравці, допитливі ентузіасти, які хочу розривати шаблони буденності і сірості,
-                        яка все більше і більше заполоняє наш світ. </p>
-                    <p class="detailed-paragraph">TRUE QUEST означає справжній квест, рішення про назву прийшло до нас
-                        абсолютно спонтанно і при досить рутинних обставинах. Наш дизайнер сидів у гарному закладі в
-                        центрі
-                        Львова і потягував смачну каву, якою так славиться наше місто і раптом, навіть не задумуючись,
-                        мимохідь, сказав, що йому потрібне щось справжнє, те, за що він буде готовий віддати гроші не
-                        шкодуючи і отримуючи задоволення. Справжній квест, подумали ми, не вичурна незрозуміла назва, а
-                        щось
-                        звичайне і, водночас те, чого не вистачає, те, що наче є, але, що складно знайти – справжність.
-                        Ось
-                        так справжня кава старого Львова піднесла неочікуваний результат наших міркувань. </p>
                     <p class="detailed-paragraph">
-                        Напевно Вам кортить дізнатися як все починалося… Ми з радістю поділимося з Вами цієї історією,
-                        яка оповита суцільною містикою і несподіваними подіями, в які ми були втягнуті на шляху до
-                        відкриття.
-                        Все почалося чудовим весняним ранком 2020 року, наша компанія з чотирьох друзів вирішила вперше
-                        відвідати звичайний квест, але не будь-де, а у самому Єгипті, куди ми вирішили поїхати відпочити
-                        компанією. Але ми були б не ми, якщо не зіткнулися з гідом, який вирішив заробити грошенят
-                        пропонуючи нам всілякі екскурсії, однією з таких екскурсій був Каїр…Ну ми ж не думали, що від
-                        спеки нам так припече в голову, що ми погодимося піти з гідом в квест-кімнату. Чи то так спека
-                        на нас повпливала, чи то гід був був настільки красномовним, але наша пригода тільки починалася.
-                        Першою пригодою був сам Каїр, такий багатий і, водночас, такий злиденний. Нам тоді багато чого
-                        здавалося таким неоднозначним, але вже тоді ми відчули ту справжність, яка до сих пір
-                        залишається з нами. Красивою повинна бути не тільки обгортка, але й цукерка. (Смачною бажано
-                        теж) Перед тим як приїхати до місця розташування квесту, ми зупинялися майже в кожному великому
-                        магазині, бо ціни в місті надзвичайно різнилися з тими, що були на туристичних локаціях і, як в
-                        нас прийнято, скуповували весь мотлох, який тільки потрапляв у поле нашого зору. До чого ми це
-                        все ведемо, в кожному магазині ми купували абсолютно різні речі, не схожі одні на одні, але була
-                        одна річ, яку всі придбали однакову, це була місцева головоломка якогось майстра, яка базувалася
-                        на тому, що потрібно дістати металеву кульку з дерев’яної пірамідки. Тоді ми не звернули на те
-                        увагу, ми були в очікуванні надзвичайно реалістичного квесту з муміями, гробницями і незабутньою
-                        атмосферою. Нас обманули, як це часто буває, і обіцяний величний квест виявився повною помилкою
-                        природи і купою синців всюди, де тільки можливо. Ввечері ми дісталися нашого незабутнього
-                        готелю, який був рівноцінний квесту, і взнали, що пакунки з подарунками, які ми купували цілий
-                        день, зникли, як і сам гід. Відчувши повне розчарування ми пішли на вечерю і саме тоді
-                        виявилося, що пірамідки, які купили, були при нас, чотири абсолютно однакові пірамідки у кожного
-                        з нас. В той самий вечір ми вирішили зробити щось своє, справжнє і особливе)
+                        {% if request.session.lang == "ua" %}
+                            TRUE QUEST – це абсолютно нове бачення старого. Наша команда протягом
+                            довгого часу відвідувала різні квест-кімнати в різних містах нашої рідної країни і ми
+                            помітили
+                            дещо, що узагальнювало всі квести – це пристосування до приміщення. Ми вирішили піти від
+                            іншого
+                            – пристосувати приміщенні під квест, тому в наших квестах все надзвичайно реалістичне, бо
+                            кожен
+                            елемент створювався з тим, а як на це буде дивитися гравець, чи не буде побудована
+                            реальність
+                            виглядати дешево і повертати гравця назад у буденність. Наша основна ціль надати гравцям те,
+                            чого ми не знайшли у всіх інших. Це велика робота над помилками, яку ми робили, робимо і
+                            будемо
+                            робити, тому що не існує ідеалів, але до них потрібно постійно крокувати. Це ми зробимо
+                            разом з
+                            Вами, бо ми також гравці, допитливі ентузіасти, які хочу розривати шаблони буденності і
+                            сірості,
+                            яка все більше і більше заполоняє наш світ.
+                        {% endif %}
+                        {% if request.session.lang == "en" %}
+                            TRUE QUEST is a completely new vision of the old. Our team has been visiting different quest
+                            rooms
+                            in different cities of our home country for a long time and we noticed something that
+                            summarized all
+                            the quests - it's an adaptation to the room. We decided to go from another - to adapt the
+                            room for
+                            the quest, so in our quests everything is extremely realistic, because each element was
+                            created with
+                            how the player will look at it, whether the built reality will look cheap and return the
+                            player back
+                            to everyday life. Our main goal is to provide players with what we have not found in
+                            everyone else. This is a lot of work on the mistakes we have made, are making and will make,
+                            because there are no ideals, but we need to constantly step up to them. We will do this
+                            together with you, because we are also players, inquisitive enthusiasts who want to break
+                            the patterns of everyday life and grayness, which more and more floods our world.
+                        {% endif %}
+                        {% if request.session.lang == "ru" %}
+                            TRUE QUEST - это совершенно новое видение старого. Наша команда долгое время посещала разные
+                            квест-комнаты в разных городах нашей родной страны, и мы заметили кое-что, что суммирует все
+                            квесты - это адаптация к комнате. Мы решили пойти от другого - адаптировать комнату под
+                            квест, поэтому в наших квестах все предельно реалистично, ведь каждый элемент создавался с
+                            учетом того, как на него будет смотреть игрок, будет ли построенная реальность выглядеть
+                            дешево и вернет ли игрока обратно в повседневную жизнь. t.r.u.e.0q.u.e.s.t@gmail.com
+                            Наша главная цель - предоставить игрокам то, чего мы не нашли ни в одном другом. Это большая
+                            работа над ошибками, которые мы совершали, делаем и будем делать, потому что идеалов нет, но
+                            нам нужно постоянно приближаться к ним. Мы сделаем это вместе с вами, потому что мы также
+                            игроки, любознательные энтузиасты, которые хотят сломать шаблоны повседневной жизни и
+                            серости, которые все больше и больше наводняют наш мир.
+
+                        {% endif %}
+
+                    </p>
+
+
+                    <p class="detailed-paragraph">
+                        {% if request.session.lang == "ua" %}
+                            TRUE QUEST означає справжній квест, рішення про назву прийшло до нас
+                            абсолютно спонтанно і при досить рутинних обставинах. Наш дизайнер сидів у гарному закладі в
+                            центрі
+                            Львова і потягував смачну каву, якою так славиться наше місто і раптом, навіть не
+                            задумуючись,
+                            мимохідь, сказав, що йому потрібне щось справжнє, те, за що він буде готовий віддати гроші
+                            не
+                            шкодуючи і отримуючи задоволення. Справжній квест, подумали ми, не вичурна незрозуміла
+                            назва, а
+                            щось
+                            звичайне і, водночас те, чого не вистачає, те, що наче є, але, що складно знайти –
+                            справжність.
+                            Ось
+                            так справжня кава старого Львова піднесла неочікуваний результат наших міркувань.
+                        {% endif %}
+                        {% if request.session.lang == "en" %}
+                            TRUE QUEST means a real quest, the decision about the name came to us completely
+                            spontaneously and under fairly routine circumstances. Our designer was sitting in a
+                            beautiful restaurant in the center of Lviv and sipping delicious coffee, which is so famous
+                            for our city, and suddenly, without even thinking, in passing, said that he needed something
+                            real, something for which he will be willing to pay money without regret and pleasure . A
+                            real quest, we thought, is not a fancy incomprehensible name, but something ordinary and, at
+                            the same time, what is missing, what seems to be there, but what is difficult to find is
+                            authenticity. This is how the real coffee of old Lviv presented the unexpected result of our
+                            reasoning.
+
+
+
+                        {% endif %}
+                        {% if request.session.lang == "ru" %}
+                            TRUE QUEST - это настоящий квест, решение по поводу названия пришло к нам совершенно
+                            спонтанно и при довольно обычных обстоятельствах. Наш дизайнер сидел в красивом ресторане в
+                            центре Львова и потягивал вкусный кофе, которым так славится наш город, и вдруг, даже не
+                            задумываясь, мимоходом сказал, что ему нужно что-то настоящее, на что он будет готов платить
+                            деньги без сожаления и удовольствия. Мы подумали, что настоящий квест - это не причудливое
+                            непонятное имя, а что-то обычное и в то же время то, чего не хватает, что вроде бы есть, но
+                            что трудно найти, так это подлинность. Так настоящий кофе старого Львова представил
+                            неожиданный результат наших рассуждений.
+
+                        {% endif %}
+
+                    </p>
+                    <p class="detailed-paragraph">
+                        {% if request.session.lang == "ua" %}
+                            Напевно Вам кортить дізнатися як все починалося… Ми з радістю поділимося з Вами цієї
+                            історією,
+                            яка оповита суцільною містикою і несподіваними подіями, в які ми були втягнуті на шляху до
+                            відкриття.
+                            Все почалося чудовим весняним ранком 2020 року, наша компанія з чотирьох друзів вирішила
+                            вперше
+                            відвідати звичайний квест, але не будь-де, а у самому Єгипті, куди ми вирішили поїхати
+                            відпочити
+                            компанією. Але ми були б не ми, якщо не зіткнулися з гідом, який вирішив заробити грошенят
+                            пропонуючи нам всілякі екскурсії, однією з таких екскурсій був Каїр…Ну ми ж не думали, що
+                            від
+                            спеки нам так припече в голову, що ми погодимося піти з гідом в квест-кімнату. Чи то так
+                            спека
+                            на нас повпливала, чи то гід був був настільки красномовним, але наша пригода тільки
+                            починалася.
+                            Першою пригодою був сам Каїр, такий багатий і, водночас, такий злиденний. Нам тоді багато
+                            чого
+                            здавалося таким неоднозначним, але вже тоді ми відчули ту справжність, яка до сих пір
+                            залишається з нами. Красивою повинна бути не тільки обгортка, але й цукерка. (Смачною бажано
+                            теж) Перед тим як приїхати до місця розташування квесту, ми зупинялися майже в кожному
+                            великому
+                            магазині, бо ціни в місті надзвичайно різнилися з тими, що були на туристичних локаціях і,
+                            як в
+                            нас прийнято, скуповували весь мотлох, який тільки потрапляв у поле нашого зору. До чого ми
+                            це
+                            все ведемо, в кожному магазині ми купували абсолютно різні речі, не схожі одні на одні, але
+                            була
+                            одна річ, яку всі придбали однакову, це була місцева головоломка якогось майстра, яка
+                            базувалася
+                            на тому, що потрібно дістати металеву кульку з дерев’яної пірамідки. Тоді ми не звернули на
+                            те
+                            увагу, ми були в очікуванні надзвичайно реалістичного квесту з муміями, гробницями і
+                            незабутньою
+                            атмосферою. Нас обманули, як це часто буває, і обіцяний величний квест виявився повною
+                            помилкою
+                            природи і купою синців всюди, де тільки можливо. Ввечері ми дісталися нашого незабутнього
+                            готелю, який був рівноцінний квесту, і взнали, що пакунки з подарунками, які ми купували
+                            цілий
+                            день, зникли, як і сам гід. Відчувши повне розчарування ми пішли на вечерю і саме тоді
+                            виявилося, що пірамідки, які купили, були при нас, чотири абсолютно однакові пірамідки у
+                            кожного
+                            з нас. В той самий вечір ми вирішили зробити щось своє, справжнє і особливе)
+                        {% endif %}
+                        {% if request.session.lang == "en" %}
+                            You probably want to know how it all started… We will be happy to share with you this story,
+                            which is shrouded in continuous mysticism and unexpected events in which we were involved on
+                            the way to discovery. It all started on a wonderful spring morning in 2020, our company of
+                            four friends decided to visit the usual quest for the first time, but not anywhere, but in
+                            Egypt itself, where we decided to go to rest with the company. But we would not be us, if we
+                            did not face a guide who decided to earn money by offering us all sorts of excursions, one
+                            of such excursions was Cairo… Well, we did not think that the heat would make us so hot that
+                            we would agree to go with a guide in the quest room.
+                            Either the heat affected us so much, or the guide was so eloquent, but our adventure was
+                            just beginning. The first adventure was Cairo itself, so rich and at the same time so
+                            miserable. Many things seemed so ambiguous to us then, but even then we felt the
+                            authenticity that still remains with us. Not only the wrapper but also the candy should be
+                            beautiful. (Delicious preferably too) Before coming to the location of the quest, we stopped
+                            at almost every big store, because the prices in the city were very different from those
+                            that were in tourist locations and, as we usually do, bought all the junk that just came in
+                            our field of vision.
+                            To what we lead all this, in each store we bought completely different things, not similar
+                            to each other, but there was one thing that everyone bought the same, it was a local puzzle
+                            of some master, which was based on the need to get a metal ball from wooden pyramid. Then we
+                            did not pay attention, we were waiting for an extremely realistic quest with mummies, tombs
+                            and an unforgettable atmosphere. We were deceived, as is often the case, and the promised
+                            majestic quest turned out to be a complete mistake of nature and a bunch of bruises wherever
+                            possible.
+                            In the evening we got to our unforgettable hotel, which was equivalent to a quest, and
+                            learned that the gift packages we had been buying all day had disappeared, as had the guide
+                            himself. Feeling completely disappointed, we went to dinner and then it turned out that the
+                            pyramids we bought were with us, four exactly the same pyramids for each of us. That evening
+                            we decided to do something of our own, real and special)
+
+                        {% endif %}
+                        {% if request.session.lang == "ru" %}
+                            Вы, наверное, захотите узнать, как все начиналось… Мы будем рады поделиться с вами этой
+                            историей,
+                            который окутан сплошным мистицизмом и неожиданными событиями, в которые мы были вовлечены
+                            путь к открытию. Все началось чудесным весенним утром 2020 года, когда наша компания
+                            четверо друзей решили впервые посетить обычный квест, но не где-нибудь, а в
+                            Сам Египет, куда мы решили поехать отдыхать с компанией. Но мы не были бы собой, если бы мы
+                            не сталкивался с гидом, который решил подзаработать, предлагая нам всевозможные экскурсии,
+                            одна
+                            таких экскурсий был Каир… Ну, мы не думали, что от жары нам так жарко, что
+                            мы бы согласились пойти с гидом в квест-комнату.
+                            Либо жара так сильно на нас повлияла, либо гид был так красноречив, но наше приключение было
+                            только начало. Первым приключением был сам Каир, такой богатый и в то же время такой
+                            убогий. Многие вещи тогда казались нам такими двусмысленными, но даже тогда мы чувствовали
+                            подлинность, которая до сих пор остается с нами. Не только обертка, но и конфеты должны быть
+                            красивая. (Желательно и вкусно) Перед тем, как подойти к локации квеста, остановились
+                            практически в каждом большом магазине, потому что цены в городе сильно отличались от тех
+                            которые были в туристических местах и, как мы обычно делаем, скупили весь хлам, который
+                            только что пришел
+                            наше поле зрения.
+                            К чему мы все это приводим, в каждом магазине мы покупали совершенно разные вещи, не похожие
+                            друг к другу, но была одна вещь, которую все покупали одинаково, это была местная
+                            головоломка
+                            какого-то мастера, который основывался на необходимости достать металлический шар из
+                            деревянной пирамиды. Тогда мы
+                            не обратили внимания, нас ждали предельно реалистичный квест с мумиями, гробницами
+                            и незабываемая атмосфера. Нас обманули, как это часто бывает, и обещанное
+                            величественный квест оказался сплошной ошибкой природы и кучей синяков повсюду
+                            возможный.
+                            Вечером добрались до нашего незабываемого отеля, что было равносильно квесту, и
+                            узнал, что подарочные пакеты, которые мы покупали весь день, исчезли, как и гид
+                            сам. Чувствуя полное разочарование, мы пошли обедать, и тут выяснилось, что
+                            Пирамиды, которые мы купили, были с нами, по четыре одинаковых пирамиды для каждого из нас.
+                            Тем вечером
+                            мы решили сделать что-то свое, настоящее и особенное)
+                        {% endif %}
+
                     </p>
                 </div>
             </div>
