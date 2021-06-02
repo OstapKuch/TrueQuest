@@ -103,7 +103,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Kiev'
 
 USE_I18N = True
 
@@ -129,3 +129,4 @@ EMAIL_HOST_USER = 'truequest.mail@gmail.com'
 EMAIL_HOST_PASSWORD = 'SIR1uY8y4Wzd'
 EMAIL_USE_TLS = True
 DEFAULT_RECIPIENT = "ostapko220@gmail.com"
+DEFAULT_SENDER = "truequest.mail@gmail.com"

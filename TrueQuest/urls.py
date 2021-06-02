@@ -14,6 +14,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('franchise/', views.franchise, name='franchise'),
     path('about/', views.about, name='about'),
+    path('contacts/', views.contacts, name='contacts'),
+    path('leave_feedback/', views.leave_feedback, name='leave_feedback'),
     path('get_reservations/', views.get_reservations, name='get_reservations')
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

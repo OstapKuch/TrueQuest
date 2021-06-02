@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>True Quest</title>
+    <link rel="icon" type="image/png" href="{% static 'images/icons/favicon2.png' %}"/>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dycalendar.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/vanilla-calendar-min.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+</head>
+<body>
+<div class="hero">
+    <header class="header">
+        <div class="topnav" id="myTopnav">
+            <span class="logo">
+                 <img src="{% static 'images/logo.png' %}" alt="">
+            </span>
+            <span class="pages-navigation">
+                <a href="{% url 'index' %}">
+                {% if request.session.lang == "ua" %}
+                    Головна
+                {% endif %}
+                    {% if request.session.lang == "en" %}
+                        Main
+                    {% endif %}
+                    {% if request.session.lang == "ru" %}
+                        Главная
+                    {% endif %}
+
+            </a>
+                <a href="{% url 'about' %}">
+                {% if request.session.lang == "ua" %}
+                    Про нас
+                {% endif %}
+                    {% if request.session.lang == "en" %}
+                        About Us
+                    {% endif %}
+                    {% if request.session.lang == "ru" %}
+                        О нас
+                    {% endif %}
+            </a>
+                <a href="{% url 'franchise' %}">
+                {% if request.session.lang == "ua" %}
+                    Франшиза
+                {% endif %}
+                    {% if request.session.lang == "en" %}
+                        Franchise
+                    {% endif %}
+                    {% if request.session.lang == "ru" %}
+                        Франшиза
+                    {% endif %}
+
+            </a>
+            </span>
+            <span class="navigation-preferences">
+                <span class="language-preferences">
+                <a{% if request.session.lang == "ua" %} class="language-active"{% else %}
+                                                        href="{% url 'change_language' "ua" %}"
+                                                        class="language" {% endif %}>Ua</a>
+                <a{% if request.session.lang == "en" %} class="language-active" {% else %}
+                                                        href="{% url 'change_language' "en" %}"
+                                                        class="language" {% endif %}>Eng</a>
+                <a{% if request.session.lang == "ru" %} class="language-active" {% else %}
+                                                        href="{% url 'change_language' "ru" %}"
+                                                        class="language" {% endif %}>Ru</a>
+            </span>
+                <button type="button" class="btn">Квести</button>
+            </span>
+
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <img src="images/icons/lock.svg">
+            </a>
+        </div>
+    </header>
+
+
+    <!-- The dots/circles -->
+
+    <div class="room-details-content">
+        <div class="franchise">
+            <h3 style="text-align: center;">
+                {% if request.session.lang == "ua" %}
+                    Відгук
+                {% endif %}
+                {% if request.session.lang == "en" %}
+                    Feedback
+                {% endif %}
+                {% if request.session.lang == "ru" %}
+                    Отзыв
+                {% endif %}
+            </h3>
+            <div class="quest-detailed-info">
+                <form action="{% url 'leave_feedback' %}" method="post">
+                    {% csrf_token %}
+                    <div class="registration-input-fields">
+
+                        <input type="text" name="feedback" class="input-booking" value=""
+                               placeholder="Залиште ваш відгук..." required>
+                        <button type="submit" class="book-checkout">
+                            {% if request.session.lang == "ua" %}
+                                Надіслати
+                            {% endif %}
+                            {% if request.session.lang == "en" %}
+                                Send
+                            {% endif %}
+                            {% if request.session.lang == "ru" %}
+                                Отправить
+                            {% endif %}
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="{% static 'pikaday.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+<script>
+    var picker = new Pikaday({field: document.getElementById('datepicker')});
+</script>
+<script type="text/javascript" src="{% static 'dycalendar.js' %}"></script>
+<script src="{% static 'js/vanilla-calendar-min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'dycalendar.min.js' %}"></script>
+</body>
+</html>

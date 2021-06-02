@@ -270,8 +270,8 @@
 
                     <input type="text" name="name" class="input-booking" value="" placeholder="Name" required>
                     <input type="text" name="phone" class="input-booking" value="" placeholder="Phone" required>
-                    <input type="text" id="time-att" name="chosen_time" value="" style="display: none">
-                    <button type="submit" class="book-checkout">Забронювати</button>
+                    <input type="text" id="time-att" name="chosen_time" value="" style="display: none" required>
+                    <button type="submit" class="book-checkout" >Забронювати</button>
                 </div>
             </form>
 
@@ -297,10 +297,14 @@
             $("#time-att").attr("value", this.value)
         }
 
-        {#$(this).attr("name", "time").siblings().attr("name", "button")#}
-        {#console.log(this.value)#}
-    })
 
+    })
+    $('.book-checkout').on('click', function() {
+    console.log("test")
+        if($("#time-att").value === "") {
+
+        }
+    });
 
     function get_data(chosen_date, room) {
         $.ajax({
@@ -310,17 +314,20 @@
             datatype: 'json',
             success: function (data) {
                 console.log(data)
-                element = $(".hour-selector").removeClass("disabled")
-                element = $(".hour-selector").removeClass("selected")
-                for (c = 1; c < data.length; c++) {
+                $(".hour-selector").removeClass("disabled")
+                $(".hour-selector").removeClass("selected")
+                $("#time-att").attr("value", "")
+                for (c = 0; c < data.length; c++) {
+                    console.log(data[c])
                     if(data[c][2] === "0") {
-                        element = $("#" + c).addClass("disabled")
+                        $("#" + (c+1)).addClass("disabled")
                     }
                 }
             },
             error: console.log("SSS"),
 
         });
+
     }
 </script>
 </body>
