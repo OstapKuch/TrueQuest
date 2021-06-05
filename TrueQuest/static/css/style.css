@@ -42,6 +42,11 @@ a {
 
 }
 
+.phone-preferences {
+    display: inline-flex;
+    margin: 0.6em 0;
+}
+
 h1 {
     font-family: 'Roboto', sans-serif;
     font-size: 3em;
@@ -100,8 +105,10 @@ h3 {
     /*font-size: 1.2em;*/
 }
 
+
 .language-preferences a {
-    padding: 0.6em 0.5em;
+    padding: 1em 0.3em;
+    font-size: small;
 }
 
 .language-preferences {
@@ -301,6 +308,17 @@ h3 {
     margin: 1.2em 0;
     transition-duration: 0.4s;
     cursor: pointer;
+}
+
+.textarea {
+    background-color: #0E0A07;
+    color: #ffffff;
+    font-family: 'Raleway', sans-serif;
+    padding: 1em 2em;
+    border: none;
+    margin: 1em 0;
+    width: -webkit-fill-available;
+
 }
 
 .rooms {
@@ -859,7 +877,14 @@ footer {
         margin: 0.5em;
     }
 
-    .topnav a:not(:first-child) {
+
+}
+
+/* ---------- Navigation bar -----------*/
+
+@media only screen and (max-width: 767px) {
+
+    .topnav a, .phone-preferences svg, .phone-preferences p {
         display: none;
     }
 
@@ -867,27 +892,49 @@ footer {
         float: right;
         display: block;
     }
-
-
 }
 
-@media (min-width: 481px) and (max-width: 767px) {
+@media only screen and (max-width: 767px) {
+
     .topnav.responsive {
-        position: relative;
+        background-color: #1C1815;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        height: 100vh;
+        width: -webkit-fill-available;
+        z-index: 9999;
     }
 
     .topnav.responsive .icon {
         position: absolute;
-        right: 0;
-        top: 0;
+        right: 2em;
+        top: 2em;
     }
 
     .topnav.responsive a {
+        margin: 0.5em;
         float: none;
         display: block;
         text-align: left;
-
     }
+
+    .logo {
+        display: none;
+    }
+
+    .language-preferences {
+        margin: 0em;
+        display: flex;
+    }
+
+    /*flex-direction: column;*/
+    /*justify-content: center;*/
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+
 
 }
 
