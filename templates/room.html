@@ -244,6 +244,7 @@
         <div class="quest-booking-info">
             <form action="{% url 'book_room' quest_room.id %}" method="post">
                 {% csrf_token %}
+                <div class="form">
                 <div class="calendar">
                     <input type="date" name="date" onchange="get_data(this.value, {{ quest_room.pk }})"
                            placeholder="Виберіть дату" value="{{ current_date }}" class="date-input"
@@ -267,11 +268,13 @@
                     {% endfor %}
                 </div>
                 <div class="registration-input-fields">
-
-                    <input type="text" name="name" class="input-booking" value="" placeholder="Name" required>
-                    <input type="text" name="phone" class="input-booking" value="" placeholder="Phone" required>
+                    <div class="credentials">
+                        <input type="text" name="name" class="input-booking" value="" placeholder="Name" required>
+                        <input type="text" name="phone" class="input-booking" value="" placeholder="Phone" required>
+                    </div>
                     <input type="text" id="time-att" name="chosen_time" value="" style="display: none" required>
                     <button type="submit" class="book-checkout" >Забронювати</button>
+                </div>
                 </div>
             </form>
 
