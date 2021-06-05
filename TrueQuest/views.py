@@ -3,7 +3,7 @@ from datetime import datetime, date, timedelta
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .models import QuestRoom, Image, RoomReservation
+from .models import QuestRoom, Image, RoomReservation, MainImage
 from django.core.mail import send_mail
 from .settings import DEFAULT_RECIPIENT, DEFAULT_SENDER
 
@@ -12,8 +12,8 @@ def index(request):
     request = sessions(request)
     quest_rooms = QuestRoom.objects.all()
     images = Image.objects.all().filter(is_main_image=1)
-    return render(request, 'index.html', {'quest_rooms': quest_rooms, 'images': images})
-
+    main_image = MainImage.objects.get()
+    return render(request, 'index.html', {'quest_rooms': quest_rooms, 'images': images, 'main_image': main_image.image.url})
 
 def room(request, room_id):
     current_date = date.today()

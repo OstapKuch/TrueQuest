@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 BOOLEAN_CHOICES = (
     (1, 1),
@@ -69,4 +70,11 @@ class MainImage(models.Model):
     name = models.CharField(max_length=45)
 
     def __str__(self):
-        return self.pk
+        return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.pk and MainImage.objects.exists():
+            # if you'll not check for self.pk
+            # then error will also raised in update of exists model
+            raise ValidationError('There is can be only one MainImage instance')
+        return super(MainImage, self).save(*args, **kwargs)
