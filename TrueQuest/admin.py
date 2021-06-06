@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.admin import DateFieldListFilter
 
-from .models import QuestRoom, Image, RoomReservation, MainImage
+from .models import QuestRoom, Image, RoomReservation, MainImage, RoomClose
 
 
 @admin.register(QuestRoom)
@@ -38,3 +38,13 @@ class RoomReservationAdmin(admin.ModelAdmin):
 class MainImage(admin.ModelAdmin):
     fields = ('image', 'name')
 
+
+@admin.register(RoomClose)
+class RoomClose(admin.ModelAdmin):
+    fields = ('quest_room_id', 'closes_at', 'opens_at')
+    list_display = ('quest_room_id', 'closes_at', 'opens_at')
+    list_filter = (
+        'quest_room_id',
+        ('closes_at', DateFieldListFilter),
+        ('opens_at', DateFieldListFilter)
+    )

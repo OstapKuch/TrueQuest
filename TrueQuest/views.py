@@ -15,6 +15,7 @@ def index(request):
     main_image = MainImage.objects.get()
     return render(request, 'index.html', {'quest_rooms': quest_rooms, 'images': images, 'main_image': main_image.image.url})
 
+
 def room(request, room_id):
     current_date = date.today()
     request = sessions(request)
@@ -58,7 +59,6 @@ def get_reservations(request):
 
 def fill_reservations_list(quest_room, chosen_date):
     current_datetime = datetime.now()
-    print(current_datetime)
     reservations = RoomReservation.objects.filter(
         reservation_date__range=[str(chosen_date) + " 00:00:00", str(chosen_date + timedelta(days=1)) + " 00:00:00"],
         quest_room_id=quest_room.pk).exclude(status="CANCELED")
@@ -88,7 +88,6 @@ def book_room(request, room_id):
         reservation_date = request.POST['date']
         time = request.POST['chosen_time']
         reservation_datetime = reservation_date + " " + time + ":00"
-        print(reservation_datetime)
         foo_instance = RoomReservation.objects.create(reservation_date=reservation_datetime,
                                                       quest_room_id=QuestRoom.objects.get(pk=room_id),
                                                       phone_number=phone,
@@ -110,9 +109,7 @@ def send_confirmation_email(reservation_datetime, name, phone, room_id, reservat
 
 
 def sessions(_request):
-    if 'lang' in _request.session.keys():
-        print(_request.session['lang'])
-    else:
+    if 'lang' not in _request.session.keys():
         _request.session['lang'] = "ua"
     return _request
 
@@ -135,7 +132,7 @@ def send_email(recipient, title, message):
 def add_minutes(start_time, minutes):
     hours = start_time.hour
     minutes = start_time.minute + minutes
-    if minutes >= 60:
+    while minutes >= 60:
         minutes = minutes - 60
         hours += 1
     start_time = start_time.replace(hour=hours)

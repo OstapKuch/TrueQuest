@@ -7,9 +7,6 @@
     <title>True Quest</title>
     <link rel="icon" type="image/png" href="{% static 'images/icons/favicon2.png' %}"/>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/dycalendar.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/vanilla-calendar-min.css' %}">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
 </head>
 <body>
 <div class="hero" style="height: 70vh;">
@@ -57,20 +54,26 @@
                 {% if request.session.lang == "ua" %}
                     Контакти
                 {% endif %}
-                {% if request.session.lang == "en" %}
-                    Contacts
-                {% endif %}
-                {% if request.session.lang == "ru" %}
-                    Контакты
-                {% endif %}
+                    {% if request.session.lang == "en" %}
+                        Contacts
+                    {% endif %}
+                    {% if request.session.lang == "ru" %}
+                        Контакты
+                    {% endif %}
 
             </a>
             </span>
             <span class="navigation-preferences">
                 <span class="language-preferences">
-                    <a{% if request.session.lang == "ua" %} class="language-active"{% else %} href="{% url 'change_language' "ua" %}" class="language" {% endif %}>Ua</a>
-                    <a{% if request.session.lang == "en" %} class="language-active" {% else %} href="{% url 'change_language' "en" %}" class="language" {% endif %}>Eng</a>
-                    <a{% if request.session.lang == "ru" %} class="language-active" {% else %} href="{% url 'change_language' "ru" %}" class="language" {% endif %}>Ru</a>
+                    <a{% if request.session.lang == "ua" %} class="language-active"{% else %}
+                                                            href="{% url 'change_language' "ua" %}"
+                                                            class="language" {% endif %}>Ua</a>
+                    <a{% if request.session.lang == "en" %} class="language-active" {% else %}
+                                                            href="{% url 'change_language' "en" %}"
+                                                            class="language" {% endif %}>Eng</a>
+                    <a{% if request.session.lang == "ru" %} class="language-active" {% else %}
+                                                            href="{% url 'change_language' "ru" %}"
+                                                            class="language" {% endif %}>Ru</a>
                 </span>
 {#                <button type="button" class="btn">Квести</button>#}
                 <span class="phone-preferences">
@@ -114,7 +117,7 @@
 
     <div class="room-details-content">
         <div class="franchise">
-            <h3 style="text-align: center;">
+            <h2 style="text-align: center;">
                 {% if request.session.lang == "ua" %}
                     Відгук
                 {% endif %}
@@ -124,13 +127,24 @@
                 {% if request.session.lang == "ru" %}
                     Отзыв
                 {% endif %}
-            </h3>
+            </h2>
             <div class="quest-detailed-info">
                 <form action="{% url 'leave_feedback' %}" method="post">
                     {% csrf_token %}
                     <div class="registration-input-fields">
-                        <textarea class="textarea" name="feedback" rows="12" cols="48" form="usrform" placeholder="Залиште ваш відгук..." required></textarea>
-{#                        <input type="text" name="feedback" class="input-booking" value="" placeholder="Залиште ваш відгук..." required>#}
+                        <textarea class="textarea" name="feedback" rows="12" cols="48" form="usrform"
+                                {% if request.session.lang == "ua" %}
+                                  placeholder="Залиште ваш відгук..."
+                                {% endif %}
+                                {% if request.session.lang == "en" %}
+                                  placeholder="Leave your feedback..."
+                                {% endif %}
+                                {% if request.session.lang == "ru" %}
+                                  placeholder="Оставьте свой отзыв..."
+                                {% endif %}
+
+                                  required></textarea>
+                        {#                        <input type="text" name="feedback" class="input-booking" value="" placeholder="Залиште ваш відгук..." required>#}
                         <button type="submit" class="book-checkout">
                             {% if request.session.lang == "ua" %}
                                 Надіслати
@@ -150,7 +164,7 @@
 
     </div>
 
-    </div>
+</div>
 
 <footer class="footer-distributed">
     <div class="footer-left">
@@ -306,16 +320,6 @@
     </div>
 
 </footer>
-
-<script src="{% static 'pikaday.js' %}"></script>
-<script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
-<script>
-    var picker = new Pikaday({field: document.getElementById('datepicker')});
-</script>
-<script type="text/javascript" src="{% static 'dycalendar.js' %}"></script>
-<script src="{% static 'js/vanilla-calendar-min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
-
-<script type="text/javascript" src="{% static 'dycalendar.min.js' %}"></script>
 </body>
 </html>

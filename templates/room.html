@@ -7,9 +7,6 @@
     <title>True Quest</title>
     <link rel="icon" type="image/png" href="{% static 'images/icons/favicon2.png' %}"/>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/dycalendar.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/vanilla-calendar-min.css' %}">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
 </head>
 <body>
 <div class="hero">
@@ -57,20 +54,26 @@
                 {% if request.session.lang == "ua" %}
                     Контакти
                 {% endif %}
-                {% if request.session.lang == "en" %}
-                    Contacts
-                {% endif %}
-                {% if request.session.lang == "ru" %}
-                    Контакты
-                {% endif %}
+                    {% if request.session.lang == "en" %}
+                        Contacts
+                    {% endif %}
+                    {% if request.session.lang == "ru" %}
+                        Контакты
+                    {% endif %}
 
             </a>
             </span>
             <span class="navigation-preferences">
                 <span class="language-preferences">
-                    <a{% if request.session.lang == "ua" %} class="language-active"{% else %} href="{% url 'change_language' "ua" %}" class="language" {% endif %}>Ua</a>
-                    <a{% if request.session.lang == "en" %} class="language-active" {% else %} href="{% url 'change_language' "en" %}" class="language" {% endif %}>Eng</a>
-                    <a{% if request.session.lang == "ru" %} class="language-active" {% else %} href="{% url 'change_language' "ru" %}" class="language" {% endif %}>Ru</a>
+                    <a{% if request.session.lang == "ua" %} class="language-active"{% else %}
+                                                            href="{% url 'change_language' "ua" %}"
+                                                            class="language" {% endif %}>Ua</a>
+                    <a{% if request.session.lang == "en" %} class="language-active" {% else %}
+                                                            href="{% url 'change_language' "en" %}"
+                                                            class="language" {% endif %}>Eng</a>
+                    <a{% if request.session.lang == "ru" %} class="language-active" {% else %}
+                                                            href="{% url 'change_language' "ru" %}"
+                                                            class="language" {% endif %}>Ru</a>
                 </span>
 {#                <button type="button" class="btn">Квести</button>#}
                 <span class="phone-preferences">
@@ -254,7 +257,7 @@
                      stroke="#FFA70A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
                      class="feather feather-phone"><path
                         d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                <p class="contact-paragraph">+38-(067)-258-25-25</p>
+                <p class="contact-paragraph "><a class="contact-text" href="tel:380632022343">+38 063 20 223 43</a></p>
               </span>
                 <span class="email">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
@@ -262,14 +265,15 @@
                      class="feather feather-mail"><path
                         d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline
                         points="22,6 12,13 2,6"></polyline></svg>
-                <p class="contact-paragraph">truequest@gmail.com</p>
+                <p class="contact-paragraph"><a class="contact-text" href="mailto:t.r.u.e.0q.u.e.s.t@gmail.com">t.r.u.e.0q.u.e.s.t@gmail.com</a></p>
               </span>
                 <span class="location">
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                        stroke="#FFA70A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
                        class="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle
                           cx="12" cy="10" r="3"></circle></svg>
-                  <p class="contact-paragraph">{{ quest_room.location }}</p>
+                  <p class="contact-paragraph"><a class="contact-text"
+                                                  href="https://goo.gl/maps/cvAy5TNhYX7N1zEb9">{{ quest_room.location }}<a/></p>
               </span>
 
             </div>
@@ -278,36 +282,33 @@
             <form action="{% url 'book_room' quest_room.id %}" method="post">
                 {% csrf_token %}
                 <div class="form">
-                <div class="calendar">
-                    <input type="date" name="date" onchange="get_data(this.value, {{ quest_room.pk }})"
-                           placeholder="Виберіть дату" value="{{ current_date }}" class="date-input"
-                           min="{{ current_date }}"
-                           max="2021-06-15"
-                           required>
-                </div>
-                <div class="booking-hours">
-                    {#                <button type="button" name="button" id="1" class="hour-selector disabled">10:00 - 11:00</button>#}
-                    {#                <button type="button" name="button" id="2" class="hour-selector">11:00 - 12:00</button>#}
-                    {#                <button type="button" name="button" id="3" class="hour-selector">12:00 - 13:00</button>#}
-                    {% for reservation in reservations %}
-                        <button type="button" value="{{ reservation.0 }}" id="{{ forloop.counter }}"
-                                class="hour-selector
+                    <div class="calendar">
+                        <input type="date" name="date" onchange="get_data(this.value, {{ quest_room.pk }})"
+                               placeholder="Виберіть дату" value="{{ current_date }}" class="date-input"
+                               min="{{ current_date }}"
+                               max="2021-06-15"
+                               required>
+                    </div>
+                    <div class="booking-hours">
+                        {% for reservation in reservations %}
+                            <button type="button" value="{{ reservation.0 }}" id="{{ forloop.counter }}"
+                                    class="hour-selector
                             {% if reservation.2 == "0" %}
                             disabled
                             {% endif %}
                             ">
-                            {{ reservation.0 }} - {{ reservation.1 }}
-                        </button>
-                    {% endfor %}
-                </div>
-                <div class="registration-input-fields">
-                    <div class="credentials">
-                        <input type="text" name="name" class="input-booking" value="" placeholder="Name" required>
-                        <input type="text" name="phone" class="input-booking" value="" placeholder="Phone" required>
+                                {{ reservation.0 }} - {{ reservation.1 }}
+                            </button>
+                        {% endfor %}
                     </div>
-                    <input type="text" id="time-att" name="chosen_time" value="" style="display: none" required>
-                    <button type="submit" class="book-checkout" >Забронювати</button>
-                </div>
+                    <div class="registration-input-fields">
+                        <div class="credentials">
+                            <input type="text" name="name" class="input-booking" value="" placeholder="Name" required>
+                            <input type="text" name="phone" class="input-booking" value="" placeholder="Phone" required>
+                        </div>
+                        <input type="text" id="time-att" name="chosen_time" value="" style="display: none" required>
+                        <button type="submit" class="book-checkout">Забронювати</button>
+                    </div>
                 </div>
             </form>
 
@@ -317,11 +318,6 @@
 
 </div>
 
-<script src="{% static 'pikaday.js' %}"></script>
-<script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
-<script>
-    var picker = new Pikaday({field: document.getElementById('datepicker')});
-</script>
 <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/jquery-3.6.0.js' %}"></script>
 
@@ -335,9 +331,9 @@
 
 
     })
-    $('.book-checkout').on('click', function() {
-    console.log("test")
-        if($("#time-att").value === "") {
+    $('.book-checkout').on('click', function () {
+        console.log("test")
+        if ($("#time-att").value === "") {
 
         }
     });
@@ -355,8 +351,8 @@
                 $("#time-att").attr("value", "")
                 for (c = 0; c < data.length; c++) {
                     console.log(data[c])
-                    if(data[c][2] === "0") {
-                        $("#" + (c+1)).addClass("disabled")
+                    if (data[c][2] === "0") {
+                        $("#" + (c + 1)).addClass("disabled")
                     }
                 }
             },

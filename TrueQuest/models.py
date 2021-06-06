@@ -78,3 +78,9 @@ class MainImage(models.Model):
             # then error will also raised in update of exists model
             raise ValidationError('There is can be only one MainImage instance')
         return super(MainImage, self).save(*args, **kwargs)
+
+
+class RoomClose(models.Model):
+    quest_room_id = models.ForeignKey(QuestRoom, on_delete=models.CASCADE)
+    closes_at = models.DateTimeField()
+    opens_at = models.DateTimeField()
