@@ -1,10 +1,5 @@
 console.log("JS file is working");
 
-// function doWithThisElement(button) {
-//     button.className = 'hour-selector selected';
-//
-// }
-
 
 function myFunction() {
   var x = document.getElementById("myTopnav");
@@ -14,15 +9,7 @@ function myFunction() {
     x.className = "topnav";
   }
 }
-// // TODO: Remove
-// dycalendar.draw({
-//    target: '#dycalendar',
-//    type: 'month',
-//    dayformat: "full",
-//    monthformat: "full",
-//    highlighttargetdate: true,
-//    prevnextbutton: 'show'
-// });
+
 
 // ------------------  Slider Start ---------------
 var slideIndex = 1;
@@ -36,6 +23,13 @@ function plusSlides(n) {
 // Thumbnail image controls
 function currentSlide(n) {
   showSlides(slideIndex = n);
+}
+
+function contact_data(data) {
+    console.log(data);
+    element = document.getElementById("input-feedback");
+    element.setAttribute("value", data)
+    // $(".input-feedback").attr("value", data)
 }
 
 function showSlides(n) {
@@ -64,13 +58,7 @@ var scrollToElement = function(el, ms){
     }, speed);
 }
 
-// specify id of element and optional scroll speed as arguments
-// scrollToElement('#timeindicatordiv', 600);
-
-
 // ------------------ Changing the hour selection buttons state
-
-// TODO: Fix the bug - Adding styles to all buttons
 $(document).on('click', 'button', function () {
         $(this).addClass('hour-selector selected').siblings().removeClass('selected')
     })

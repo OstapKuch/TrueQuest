@@ -3,7 +3,9 @@ from datetime import datetime, date, timedelta
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .models import QuestRoom, Image, RoomReservation, MainImage
+from django.utils import timezone
+
+from .models import QuestRoom, Image, RoomReservation, MainImage, RoomClose
 from django.core.mail import send_mail
 from .settings import DEFAULT_RECIPIENT, DEFAULT_SENDER
 
@@ -13,17 +15,18 @@ def index(request):
     quest_rooms = QuestRoom.objects.all()
     images = Image.objects.all().filter(is_main_image=1)
     main_image = MainImage.objects.get()
-    return render(request, 'index.html', {'quest_rooms': quest_rooms, 'images': images, 'main_image': main_image.image.url})
+    return render(request, 'index.html',
+                  {'quest_rooms': quest_rooms, 'images': images, 'main_image': main_image.image.url})
 
 
 def room(request, room_id):
     current_date = date.today()
     request = sessions(request)
     quest_room = QuestRoom.objects.get(pk=room_id)
-    image = Image.objects.get(quest_id=room_id, is_main_image=1)
+    images = Image.objects.all().filter(quest_id=room_id, is_main_image=0)
     current_date, room_hours = fill_reservations_list(quest_room, current_date)
     return render(request, 'room.html', {'quest_room': quest_room,
-                                         'image_url': image.image.url,
+                                         'images': images,
                                          'reservations': room_hours,
                                          'current_date': current_date.strftime('%Y-%m-%d'),
                                          'max_date': current_date + timedelta(days=14)})
@@ -62,6 +65,7 @@ def fill_reservations_list(quest_room, chosen_date):
     reservations = RoomReservation.objects.filter(
         reservation_date__range=[str(chosen_date) + " 00:00:00", str(chosen_date + timedelta(days=1)) + " 00:00:00"],
         quest_room_id=quest_room.pk).exclude(status="CANCELED")
+    room_is_closed = RoomClose.objects.all()
     duration_min = (quest_room.room_closes_at.hour * 60 + quest_room.room_closes_at.minute) - (
             quest_room.room_opens_at.hour * 60 + quest_room.room_closes_at.minute)
     count_quests_per_day = int(duration_min / quest_room.quest_duration)
@@ -71,8 +75,21 @@ def fill_reservations_list(quest_room, chosen_date):
         room_available = "1"
         if current_datetime.time() > quest_time_finish and date.today() == chosen_date:
             room_available = "0"
-        for i in range(0, len(reservations)):
-            if reservations[i].reservation_date.hour == quest_time_finish.hour:
+        lll = timezone.now()
+        lll = timezone.localtime(lll)
+        lll = lll.replace(year=chosen_date.year,
+                          month=chosen_date.month,
+                          day=chosen_date.day,
+                          hour=quest_time_finish.hour,
+                          minute=quest_time_finish.minute)
+        for room_time in room_is_closed:
+            if timezone.localtime(room_time.closes_at) < timezone.localtime(lll) < timezone.localtime(
+                    room_time.opens_at):
+                room_available = "0"
+                break
+        for counter in range(0, len(reservations)):
+            reservation_time = timezone.localtime(reservations[counter].reservation_date)
+            if reservation_time.hour == quest_time_finish.hour:
                 room_available = "0"
         quest_start_time = quest_time_finish
         quest_time_finish = add_minutes(quest_time_finish, quest_room.quest_duration)

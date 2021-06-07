@@ -21,11 +21,11 @@ RESERVATIONS_STATUS_CHOICES = (
 
 class QuestRoom(models.Model):
     title = models.CharField(max_length=45)
-    description = models.CharField(max_length=500)
+    description = models.CharField(max_length=750)
     title_en = models.CharField(max_length=45)
-    description_en = models.CharField(max_length=500)
+    description_en = models.CharField(max_length=750)
     title_ru = models.CharField(max_length=45)
-    description_ru = models.CharField(max_length=500)
+    description_ru = models.CharField(max_length=750)
     min_person_amount = models.IntegerField()
     max_person_amount = models.IntegerField()
     time = models.DateTimeField
@@ -74,8 +74,6 @@ class MainImage(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.pk and MainImage.objects.exists():
-            # if you'll not check for self.pk
-            # then error will also raised in update of exists model
             raise ValidationError('There is can be only one MainImage instance')
         return super(MainImage, self).save(*args, **kwargs)
 

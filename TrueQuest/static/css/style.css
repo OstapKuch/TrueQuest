@@ -94,14 +94,15 @@ h3 {
     padding-left: 2px !important;
 }
 
-.contact-text {
+.contact-text, .location-url {
     color: white;
     text-decoration: none;
 }
 
-.contact-text:hover {
+.contact-text:hover, .location-url:hover {
     color: #FFA70A;
 }
+
 
 .topnav {
     display: flex;
@@ -258,6 +259,11 @@ h3 {
     line-height: 42px;
     font-size: 2.2em;
     font-family: 'Roboto', sans-serif;
+}
+
+.header-margin {
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
 }
 
 @-webkit-keyframes fade {
@@ -505,6 +511,7 @@ span.location {
 .calendar {
     /*width: 400px;*/
     /*height: 400px;*/
+    /*min-width: 170px;*/
 }
 
 .date-input {
@@ -513,8 +520,11 @@ span.location {
     border: none;
     padding: 1em 2em;
     margin: 1em 0;
+    min-width: 170px;
     font-family: 'Raleway', sans-serif;
 }
+
+
 
 ::-webkit-calendar-picker-indicator {
     filter: invert(1);
@@ -724,6 +734,9 @@ footer {
 /*.feather-clock, .feather-map-pin {*/
 /*    margin-left: 20px;*/
 /*}*/
+.feather-clock  {
+    margin-left: 8px;
+}
 
 .feather-menu {
     position: absolute;

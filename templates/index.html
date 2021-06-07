@@ -213,8 +213,9 @@
                         points="12 6 12 12 16 14"></polyline></svg>{{ quest_room.quest_duration }}
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
                      stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-                     class="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle
+                     class="feather feather-map-pin" style="margin-left: 8px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle
                         cx="12" cy="10" r="3"></circle></svg>
+              <a class="location-url" href="https://goo.gl/maps/cvAy5TNhYX7N1zEb9">
                   {% if request.session.lang == "ua" %}
                       вул. Назва вулиці, 23
                   {% endif %}
@@ -224,6 +225,7 @@
                   {% if request.session.lang == "ru" %}
                       ул. Название улици, 23
                   {% endif %}
+              </a>
               </span>
                     </div>
                     <p class="room-description" maxlength="20">
@@ -314,7 +316,7 @@
                 <span>
                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                       stroke="#FFA70A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-                      class="feather feather-map-pin">
+                      class="feather feather-map-pin" >
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                 <circle
                         cx="12" cy="10" r="3"></circle>
