@@ -4,6 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords"
+          content="entertainment in lviv, Квест рум львов, квесты львов, забронировать квест игру,
+          развлечения львов, развлечения во Львове, квест румы Львова, лучшие квест румы Львова">
+    <meta name="description" content="TRUE QUEST – це абсолютно нове бачення старого. TRUE QUEST означає справжній квест">
     <title>True Quest</title>
     <link rel="icon" type="image/png" href="{% static 'images/icons/favicon2.png' %}"/>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -54,20 +58,26 @@
                 {% if request.session.lang == "ua" %}
                     Контакти
                 {% endif %}
-                {% if request.session.lang == "en" %}
-                    Contacts
-                {% endif %}
-                {% if request.session.lang == "ru" %}
-                    Контакты
-                {% endif %}
+                    {% if request.session.lang == "en" %}
+                        Contacts
+                    {% endif %}
+                    {% if request.session.lang == "ru" %}
+                        Контакты
+                    {% endif %}
 
             </a>
             </span>
             <span class="navigation-preferences">
                 <span class="language-preferences">
-                    <a{% if request.session.lang == "ua" %} class="language-active"{% else %} href="{% url 'change_language' "ua" %}" class="language" {% endif %}>Ua</a>
-                    <a{% if request.session.lang == "en" %} class="language-active" {% else %} href="{% url 'change_language' "en" %}" class="language" {% endif %}>Eng</a>
-                    <a{% if request.session.lang == "ru" %} class="language-active" {% else %} href="{% url 'change_language' "ru" %}" class="language" {% endif %}>Ru</a>
+                    <a{% if request.session.lang == "ua" %} class="language-active"{% else %}
+                                                            href="{% url 'change_language' "ua" %}"
+                                                            class="language" {% endif %}>Ua</a>
+                    <a{% if request.session.lang == "en" %} class="language-active" {% else %}
+                                                            href="{% url 'change_language' "en" %}"
+                                                            class="language" {% endif %}>Eng</a>
+                    <a{% if request.session.lang == "ru" %} class="language-active" {% else %}
+                                                            href="{% url 'change_language' "ru" %}"
+                                                            class="language" {% endif %}>Ru</a>
                 </span>
 {#                <button type="button" class="btn">Квести</button>#}
                 <span class="phone-preferences">
@@ -213,7 +223,8 @@
                         points="12 6 12 12 16 14"></polyline></svg>{{ quest_room.quest_duration }}
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
                      stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-                     class="feather feather-map-pin" style="margin-left: 8px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle
+                     class="feather feather-map-pin" style="margin-left: 8px"><path
+                        d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle
                         cx="12" cy="10" r="3"></circle></svg>
               <a class="location-url" href="https://goo.gl/maps/cvAy5TNhYX7N1zEb9">
                   {% if request.session.lang == "ua" %}
@@ -233,10 +244,10 @@
                             {{ quest_room.description|slice:":210" }}
                         {% endif %}
                         {% if request.session.lang == "en" %}
-                            {{ quest_room.description_en|slice:":210"  }}
+                            {{ quest_room.description_en|slice:":210" }}
                         {% endif %}
                         {% if request.session.lang == "ru" %}
-                            {{ quest_room.description_ru|slice:":210"  }}
+                            {{ quest_room.description_ru|slice:":210" }}
                         {% endif %}
                         ...
                     </p>
@@ -316,7 +327,7 @@
                 <span>
                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                       stroke="#FFA70A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-                      class="feather feather-map-pin" >
+                      class="feather feather-map-pin">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                 <circle
                         cx="12" cy="10" r="3"></circle>
