@@ -343,8 +343,32 @@ h3 {
     border: none;
     margin: 1em 0;
     width: -webkit-fill-available;
-
 }
+
+.players-input {
+    /*background-color: #1c1815;*/
+    color: #ffffff;
+    font-family: 'Raleway', sans-serif;
+    padding: 1em 0;
+    margin: 1em 0;
+    /*border: 2px solid #FFA70A;*/
+    border: none;
+    outline: none;
+}
+
+.select-items {
+    background-color: #33383b;
+    border: none;
+}
+option {
+    border: none;
+}
+
+label.price {
+    color: #f2f2f2;
+    margin: 0 1em;
+}
+
 
 .rooms {
     /*height: 100vh;*/
@@ -367,6 +391,11 @@ h3 {
     justify-content: center;
     width: auto;
     /* background-color: blue; */
+}
+
+.row {
+    align-items: center;
+    display: flex;
 }
 
 .room-image {
@@ -809,7 +838,6 @@ footer {
 @media (min-width: 768px) and (max-width: 1024px) {
 
     /* CSS */
-
     .hero-text {
         text-align: center;
         margin: 0 2em 0 2em;

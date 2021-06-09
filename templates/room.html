@@ -147,19 +147,17 @@
     </div>
     <br>
 
-    <!-- The dots/circles -->
+
     <div style="text-align:center">
         {% for image in images %}
         <span class="dot" onclick="currentSlide({{ forloop.counter }})"></span>
         {% endfor %}
-{#        <span class="dot" onclick="currentSlide(2)"></span>#}
-{#        <span class="dot" onclick="currentSlide(3)"></span>#}
     </div>
 
     <div class="room-details-content">
         <div class="short-description">
               <span class="room-complexity">
-                {% for i in "12345" %}
+                    {% for i in "12345" %}
                     {% if forloop.counter > quest_room.difficulty %}
                         <svg xmlns="http://www.w3.org/2000/svg"
                              width="18"
@@ -190,17 +188,15 @@
                      </svg>
                     {% endif %}
                 {% endfor %}
-                  <p class="short-description-text">
-                  {% if request.session.lang == "ua" %}
-                      Складність
-                  {% endif %}
+                    <p class="short-description-text">
+                      {% if request.session.lang == "ua" %}Складність{% endif %}
                       {% if request.session.lang == "en" %}
                           Complexity
                       {% endif %}
                       {% if request.session.lang == "ru" %}
                           Сложность
                       {% endif %}
-              </p>
+                    </p>
               </span>
             <span class="room-time">
                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -321,6 +317,14 @@
                     </div>
                     <div class="registration-input-fields">
                         <div class="credentials">
+                            <div class="row">
+                            <select class="players-input" name="players" id="players" style="background-color: #1f1b1d">
+                                <option value="players-2">2 гравців</option>
+                                <option value="players-3">3 гравців</option>
+                                <option value="players-4">4 гравців</option>
+                            </select>
+                            <label class="price">600 UAH</label>
+                            </div>
                             <input type="text" name="name" class="input-booking" value="" placeholder="Name" required>
                             <input type="text" name="phone" class="input-booking" value="" placeholder="Phone" required>
                         </div>
