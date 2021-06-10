@@ -287,7 +287,7 @@
                        class="feather feather-map-pin" style="margin-left: 0 !important;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle
                           cx="12" cy="10" r="3"></circle></svg>
                   <p class="contact-paragraph"><a class="contact-text"
-                                                  href="https://goo.gl/maps/cvAy5TNhYX7N1zEb9">{{ quest_room.location }}<a/></p>
+                                                  href="{{ quest_room.location_google_url }}">{{ quest_room.location }}<a/></p>
               </span>
 
             </div>
@@ -318,12 +318,31 @@
                     <div class="registration-input-fields">
                         <div class="credentials">
                             <div class="row">
-                            <select class="players-input" name="players" id="players" style="background-color: #1f1b1d">
-                                <option value="players-2">2 гравців</option>
-                                <option value="players-3">3 гравців</option>
-                                <option value="players-4">4 гравців</option>
-                            </select>
-                            <label class="price">600 UAH</label>
+                                <select onchange="changePriceRoom(this)" id="select_price" class="players-input"
+                                        name="players" id="players"
+                                        style="background-color: #1f1b1d">
+                                    {% for price in room_prices %}
+                                        <option value="{{ price.price }}">{{ price.number_of_person }}
+                                            {% if price.number_of_person == 1 %}
+                                                особа
+                                            {% else %}
+                                                осіб
+                                            {% endif %}
+                                        </option>
+                                    {% endfor %}
+
+
+                                    {#                                <option value="players-3">3 гравців</option>#}
+                                    {#                                <option value="players-4">4 гравців</option>#}
+                                </select>
+                                <label id="quest_price" class="price">555</label>
+{#                            <select class="players-input" name="players" id="players" style="background-color: #1f1b1d">#}
+{#                                #}
+{#                                <option value="players-2">2 гравців</option>#}
+{#                                <option value="players-3">3 гравців</option>#}
+{#                                <option value="players-4">4 гравців</option>#}
+{#                            </select>#}
+{#                            <label class="price">600 UAH</label>#}
                             </div>
                             <input type="text" name="name" class="input-booking" value="" placeholder="Name" required>
                             <input type="text" name="phone" class="input-booking" value="" placeholder="Phone" required>
@@ -344,6 +363,12 @@
 <script type="text/javascript" src="{% static 'js/jquery-3.6.0.js' %}"></script>
 
 <script>
+    setPricesOnRoomStart();
+    function setPricesOnRoomStart() {
+    var price_option = document.getElementById("quest_price");
+    var current_value = document.getElementById("select_price")
+    price_option.innerHTML = (current_value.value + " ₴")
+}
     $(document).on('click', 'button', function () {
         console.log($(this).hasClass('hour-selector'))
         if ($(this).hasClass('hour-selector')) {

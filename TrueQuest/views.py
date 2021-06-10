@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.utils import timezone
 
-from .models import QuestRoom, Image, RoomReservation, MainImage, RoomClose
+from .models import QuestRoom, Image, RoomReservation, MainImage, RoomClose, RoomPrice
 from django.core.mail import send_mail
 from .settings import DEFAULT_RECIPIENT, DEFAULT_SENDER
 
@@ -15,8 +15,14 @@ def index(request):
     quest_rooms = QuestRoom.objects.all()
     images = Image.objects.all().filter(is_main_image=1)
     main_image = MainImage.objects.get()
+    prices = RoomPrice.objects.order_by('number_of_person')
+    for price in prices:
+        print(price.quest_room_id_id, price.number_of_person)
     return render(request, 'index.html',
-                  {'quest_rooms': quest_rooms, 'images': images, 'main_image': main_image.image.url})
+                  {'quest_rooms': quest_rooms,
+                   'images': images,
+                   'main_image': main_image.image.url,
+                   'room_prices': prices})
 
 
 def room(request, room_id):
@@ -24,12 +30,14 @@ def room(request, room_id):
     request = sessions(request)
     quest_room = QuestRoom.objects.get(pk=room_id)
     images = Image.objects.all().filter(quest_id=room_id, is_main_image=0)
+    prices = RoomPrice.objects.filter(quest_room_id=room_id).order_by('number_of_person')
     current_date, room_hours = fill_reservations_list(quest_room, current_date)
     return render(request, 'room.html', {'quest_room': quest_room,
                                          'images': images,
                                          'reservations': room_hours,
                                          'current_date': current_date.strftime('%Y-%m-%d'),
-                                         'max_date': current_date + timedelta(days=14)})
+                                         'max_date': current_date + timedelta(days=14),
+                                         'room_prices': prices})
 
 
 def franchise(request):
@@ -104,24 +112,37 @@ def book_room(request, room_id):
         phone = request.POST['phone']
         reservation_date = request.POST['date']
         time = request.POST['chosen_time']
+        chosen_price = request.POST['players']
+        prices = RoomPrice.objects.filter(quest_room_id=room_id).order_by('number_of_person')
+        person_number = 0
+        for price in prices:
+            print(price.price, chosen_price)
+            if str(price.price) == str(chosen_price):
+
+                person_number = price.number_of_person
+                break
         reservation_datetime = reservation_date + " " + time + ":00"
         foo_instance = RoomReservation.objects.create(reservation_date=reservation_datetime,
                                                       quest_room_id=QuestRoom.objects.get(pk=room_id),
                                                       phone_number=phone,
                                                       name=name,
+                                                      person_number=person_number,
+                                                      price=chosen_price,
                                                       status="PENDING")
         message = "Дякую за ваше замовлення, адміністратор зв'яжеться з вами"
-        send_confirmation_email(reservation_datetime, name, phone, QuestRoom.objects.get(pk=room_id).title,
+        send_confirmation_email(reservation_datetime, name, phone, person_number, chosen_price, QuestRoom.objects.get(pk=room_id).title,
                                 foo_instance.pk)
         return redirect("room", room_id)
 
 
-def send_confirmation_email(reservation_datetime, name, phone, room_id, reservation_id):
+def send_confirmation_email(reservation_datetime, name, phone, person_number, chosen_price, room_id, reservation_id):
     title = "Бронювання №" + str(reservation_id)
     message = "Кімната " + str(room_id) \
               + "\nЗамовив: " + name \
               + "\nТел: " + phone \
-              + "\nДата: " + reservation_datetime
+              + "\nДата: " + reservation_datetime \
+              + "\nкількість осіб: " + str(person_number) \
+              + "\nЦіна: " + str(chosen_price)
     send_email(DEFAULT_RECIPIENT, title, message)
 
 

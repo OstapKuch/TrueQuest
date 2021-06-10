@@ -30,6 +30,7 @@ class QuestRoom(models.Model):
     max_person_amount = models.IntegerField()
     time = models.DateTimeField
     location = models.CharField(max_length=60)
+    location_google_url = models.CharField(max_length=200)
     difficulty = models.IntegerField(choices=QUEST_DIFFICULTY)
     quest_duration = models.IntegerField(help_text="час прохдження кімнати в хв")
     age = models.IntegerField
@@ -59,6 +60,8 @@ class RoomReservation(models.Model):
     quest_room_id = models.ForeignKey(QuestRoom, on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=12)
     name = models.CharField(max_length=45)
+    person_number = models.IntegerField()
+    price = models.IntegerField()
     status = models.CharField(max_length=15, choices=RESERVATIONS_STATUS_CHOICES)
 
     def __str__(self):
@@ -82,3 +85,10 @@ class RoomClose(models.Model):
     quest_room_id = models.ForeignKey(QuestRoom, on_delete=models.CASCADE)
     closes_at = models.DateTimeField()
     opens_at = models.DateTimeField()
+
+
+class RoomPrice(models.Model):
+    quest_room_id = models.ForeignKey(QuestRoom, on_delete=models.CASCADE)
+    number_of_person = models.IntegerField()
+    price = models.IntegerField()
+

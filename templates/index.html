@@ -7,7 +7,8 @@
     <meta name="keywords"
           content="entertainment in lviv, Квест рум львов, квесты львов, забронировать квест игру,
           развлечения львов, развлечения во Львове, квест румы Львова, лучшие квест румы Львова">
-    <meta name="description" content="TRUE QUEST – це абсолютно нове бачення старого. TRUE QUEST означає справжній квест">
+    <meta name="description"
+          content="TRUE QUEST – це абсолютно нове бачення старого. TRUE QUEST означає справжній квест">
     <title>True Quest</title>
     <link rel="icon" type="image/png" href="{% static 'images/icons/favicon2.png' %}"/>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -69,9 +70,15 @@
             </span>
             <span class="navigation-preferences">
                 <span class="language-preferences">
-                    <a{% if request.session.lang == "ua" %} class="language-active"{% else %} href="{% url 'change_language' "ua" %}" class="language" {% endif %}>Ua</a>
-                    <a{% if request.session.lang == "en" %} class="language-active" {% else %} href="{% url 'change_language' "en" %}" class="language" {% endif %}>Eng</a>
-                    <a{% if request.session.lang == "ru" %} class="language-active" {% else %} href="{% url 'change_language' "ru" %}" class="language" {% endif %}>Ru</a>
+                    <a{% if request.session.lang == "ua" %} class="language-active"{% else %}
+                                                            href="{% url 'change_language' "ua" %}"
+                                                            class="language" {% endif %}>Ua</a>
+                    <a{% if request.session.lang == "en" %} class="language-active" {% else %}
+                                                            href="{% url 'change_language' "en" %}"
+                                                            class="language" {% endif %}>Eng</a>
+                    <a{% if request.session.lang == "ru" %} class="language-active" {% else %}
+                                                            href="{% url 'change_language' "ru" %}"
+                                                            class="language" {% endif %}>Ru</a>
                 </span>
 
                 <span class="phone-preferences">
@@ -234,7 +241,8 @@
                                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                                 <circle cx="12" cy="10" r="3"></circle>
                             </svg>
-                            <a class="location-url" href="https://goo.gl/maps/cvAy5TNhYX7N1zEb9">{{ quest_room.location }}</a>
+                            <a class="location-url"
+                               href="{{ quest_room.location_google_url }}">{{ quest_room.location }}</a>
                         </span>
                     </div>
                     <p class="room-description" maxlength="20">
@@ -250,14 +258,25 @@
                         ...
                     </p>
                     <div class="row">
-                        <select class="players-input" name="players" id="players" style="background-color: #1c1815;">
-                            <option value="players-2">2 гравців</option>
-                            <option value="players-3">3 гравців</option>
-                            <option value="players-4">4 гравців</option>
+                        <select onchange="changePrice(this)" id="select_price{{ forloop.counter }}"
+                                class="players-input" name="players" id="players" style="background-color: #1c1815;">
+                            {% for price in room_prices %}
+                                {% if price.quest_room_id_id == quest_room.id %}
+                                    <option id="quest_price_option{{ forloop.parentloop.counter }}"
+                                            value="{{ price.price }}">{{ price.number_of_person }}
+                                        {% if price.number_of_person == 1 %}
+                                            особа
+                                        {% else %}
+                                            осіб
+                                        {% endif %}
+                                    </option>
+                                {% endif %}
+                            {% endfor %}
                         </select>
-                        <label class="price">600 UAH</label>
+                        <label id="quest_price{{ forloop.counter }}" class="price"></label>
                     </div>
-                    <button type="button" class="btn-room button1" onclick="location.href = '{% url 'room' quest_room.id %}'">
+                    <button type="button" class="btn-room button1"
+                            onclick="location.href = '{% url 'room' quest_room.id %}'">
                         {% if request.session.lang == "ua" %}Забронювати зараз{% endif %}
                         {% if request.session.lang == "en" %}Book{% endif %}
                         {% if request.session.lang == "ru" %}Забронировать сейчас{% endif %}
@@ -424,6 +443,18 @@
 
 </footer>
 <script type="text/javascript">
+    setPricesOnStart();
+
+
+    function setPricesOnStart() {
+        var rooms_number = document.querySelectorAll('.room').length;
+        for (var i = 1; i <= rooms_number; i++) {
+            var price_option = document.getElementById("quest_price" + i.toString());
+            var current_value = document.getElementById("select_price" + i.toString())
+            price_option.innerHTML = (current_value.value + " ₴")
+        }
+    }
+
     function myFunction() {
         var x = document.getElementById("myTopnav");
         if (x.className === "topnav") {
