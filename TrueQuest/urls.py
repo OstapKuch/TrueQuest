@@ -16,7 +16,8 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('contacts/', views.contacts, name='contacts'),
     path('leave_feedback/', views.leave_feedback, name='leave_feedback'),
-    path('get_reservations/', views.get_reservations, name='get_reservations')
+    path('get_reservations/', views.get_reservations, name='get_reservations'),
+    path('order_confirmation/', views.confirm_order, name='confirm_order')
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

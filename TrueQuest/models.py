@@ -33,6 +33,7 @@ class QuestRoom(models.Model):
     location_google_url = models.CharField(max_length=200)
     difficulty = models.IntegerField(choices=QUEST_DIFFICULTY)
     quest_duration = models.IntegerField(help_text="час прохдження кімнати в хв")
+    time_for_room_cleaning = models.IntegerField()
     age = models.IntegerField
     room_opens_at = models.TimeField()
     room_closes_at = models.TimeField()

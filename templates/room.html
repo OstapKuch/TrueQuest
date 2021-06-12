@@ -300,7 +300,7 @@
                         <input type="date" name="date" onchange="get_data(this.value, {{ quest_room.pk }})"
                                placeholder="Виберіть дату" value="{{ current_date }}" class="date-input"
                                min="{{ current_date }}"
-                               max="2021-06-15"
+                               max="{{ max_date }}"
                                required>
                     </div>
                     <div class="booking-hours">

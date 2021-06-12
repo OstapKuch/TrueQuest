@@ -16,8 +16,6 @@ def index(request):
     images = Image.objects.all().filter(is_main_image=1)
     main_image = MainImage.objects.get()
     prices = RoomPrice.objects.order_by('number_of_person')
-    for price in prices:
-        print(price.quest_room_id_id, price.number_of_person)
     return render(request, 'index.html',
                   {'quest_rooms': quest_rooms,
                    'images': images,
@@ -36,7 +34,7 @@ def room(request, room_id):
                                          'images': images,
                                          'reservations': room_hours,
                                          'current_date': current_date.strftime('%Y-%m-%d'),
-                                         'max_date': current_date + timedelta(days=14),
+                                         'max_date': (current_date + timedelta(days=14)).strftime('%Y-%m-%d'),
                                          'room_prices': prices})
 
 
@@ -58,6 +56,25 @@ def leave_feedback(request):
     return redirect("index")
 
 
+def confirm_order(request):
+    if 'reservation' in request.session.keys():
+        reservation_id = json.loads(request.session['reservation'])
+        reservation = RoomReservation.objects.get(pk=reservation_id['quest_room_id'])
+        del request.session['reservation']
+        image = Image.objects.get(quest_id=reservation.quest_room_id, is_main_image=1)
+        return render(request, 'order_confirmation.html',
+                      {'name': reservation.name,
+                       'image': image.image.url,
+                       'reservation_date': reservation.reservation_date,
+                       'room_name': reservation.quest_room_id,
+                       'person_count': reservation.person_number,
+                       'price': reservation.price
+                       }
+                      )
+    else:
+        return redirect('index')
+
+
 def get_reservations(request):
     room_id = int(request.GET['room_id'])
     chosen_date = request.GET['chosen_date']
@@ -73,10 +90,11 @@ def fill_reservations_list(quest_room, chosen_date):
     reservations = RoomReservation.objects.filter(
         reservation_date__range=[str(chosen_date) + " 00:00:00", str(chosen_date + timedelta(days=1)) + " 00:00:00"],
         quest_room_id=quest_room.pk).exclude(status="CANCELED")
+    quest_pause = quest_room.time_for_room_cleaning
     room_is_closed = RoomClose.objects.all()
     duration_min = (quest_room.room_closes_at.hour * 60 + quest_room.room_closes_at.minute) - (
             quest_room.room_opens_at.hour * 60 + quest_room.room_closes_at.minute)
-    count_quests_per_day = int(duration_min / quest_room.quest_duration)
+    count_quests_per_day = int((duration_min + quest_pause) / (quest_room.quest_duration + quest_pause))
     room_hours = []
     quest_time_finish = quest_room.room_opens_at
     for i in range(0, count_quests_per_day):
@@ -99,8 +117,12 @@ def fill_reservations_list(quest_room, chosen_date):
             reservation_time = timezone.localtime(reservations[counter].reservation_date)
             if reservation_time.hour == quest_time_finish.hour:
                 room_available = "0"
-        quest_start_time = quest_time_finish
+        if i != 0:
+            quest_start_time = add_minutes(quest_time_finish, quest_pause)
+        else:
+            quest_start_time = quest_time_finish
         quest_time_finish = add_minutes(quest_time_finish, quest_room.quest_duration)
+        quest_time_finish = add_minutes(quest_time_finish, quest_pause)
         room_hours.append(["{:d}:{:02d}".format(quest_start_time.hour, quest_start_time.minute),
                            "{:d}:{:02d}".format(quest_time_finish.hour, quest_time_finish.minute), room_available])
     return chosen_date, room_hours
@@ -116,23 +138,24 @@ def book_room(request, room_id):
         prices = RoomPrice.objects.filter(quest_room_id=room_id).order_by('number_of_person')
         person_number = 0
         for price in prices:
-            print(price.price, chosen_price)
             if str(price.price) == str(chosen_price):
-
                 person_number = price.number_of_person
                 break
         reservation_datetime = reservation_date + " " + time + ":00"
-        foo_instance = RoomReservation.objects.create(reservation_date=reservation_datetime,
-                                                      quest_room_id=QuestRoom.objects.get(pk=room_id),
-                                                      phone_number=phone,
-                                                      name=name,
-                                                      person_number=person_number,
-                                                      price=chosen_price,
-                                                      status="PENDING")
+        reservation = RoomReservation.objects.create(reservation_date=reservation_datetime,
+                                                     quest_room_id=QuestRoom.objects.get(pk=room_id),
+                                                     phone_number=phone,
+                                                     name=name,
+                                                     person_number=person_number,
+                                                     price=chosen_price,
+                                                     status="PENDING")
         message = "Дякую за ваше замовлення, адміністратор зв'яжеться з вами"
-        send_confirmation_email(reservation_datetime, name, phone, person_number, chosen_price, QuestRoom.objects.get(pk=room_id).title,
-                                foo_instance.pk)
-        return redirect("room", room_id)
+        send_confirmation_email(reservation_datetime, name, phone, person_number, chosen_price,
+                                QuestRoom.objects.get(pk=room_id).title,
+                                reservation.pk)
+        reservation_id = {'quest_room_id': reservation.pk}
+        request.session['reservation'] = json.dumps(reservation_id)
+        return redirect("confirm_order")
 
 
 def send_confirmation_email(reservation_datetime, name, phone, person_number, chosen_price, room_id, reservation_id):
@@ -172,7 +195,10 @@ def add_minutes(start_time, minutes):
     minutes = start_time.minute + minutes
     while minutes >= 60:
         minutes = minutes - 60
-        hours += 1
+        if hours == 23:
+            hours = 0
+        else:
+            hours += 1
     start_time = start_time.replace(hour=hours)
     start_time = start_time.replace(minute=minutes)
     return start_time
