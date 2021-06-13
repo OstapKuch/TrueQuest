@@ -7,7 +7,8 @@
     <meta name="keywords"
           content="entertainment in lviv, Квест рум львов, квесты львов, забронировать квест игру,
           развлечения львов, развлечения во Львове, квест румы Львова, лучшие квест румы Львова">
-    <meta name="description" content="TRUE QUEST – це абсолютно нове бачення старого. TRUE QUEST означає справжній квест">
+    <meta name="description"
+          content="TRUE QUEST – це абсолютно нове бачення старого. TRUE QUEST означає справжній квест">
     <title>True Quest</title>
     <link rel="icon" type="image/png" href="{% static 'images/icons/favicon2.png' %}"/>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -58,20 +59,26 @@
                 {% if request.session.lang == "ua" %}
                     Контакти
                 {% endif %}
-                {% if request.session.lang == "en" %}
-                    Contacts
-                {% endif %}
-                {% if request.session.lang == "ru" %}
-                    Контакты
-                {% endif %}
+                    {% if request.session.lang == "en" %}
+                        Contacts
+                    {% endif %}
+                    {% if request.session.lang == "ru" %}
+                        Контакты
+                    {% endif %}
 
             </a>
             </span>
             <span class="navigation-preferences">
                 <span class="language-preferences">
-                    <a{% if request.session.lang == "ua" %} class="language-active"{% else %} href="{% url 'change_language' "ua" %}" class="language" {% endif %}>Ua</a>
-                    <a{% if request.session.lang == "en" %} class="language-active" {% else %} href="{% url 'change_language' "en" %}" class="language" {% endif %}>Eng</a>
-                    <a{% if request.session.lang == "ru" %} class="language-active" {% else %} href="{% url 'change_language' "ru" %}" class="language" {% endif %}>Ru</a>
+                    <a{% if request.session.lang == "ua" %} class="language-active"{% else %}
+                                                            href="{% url 'change_language' "ua" %}"
+                                                            class="language" {% endif %}>Ua</a>
+                    <a{% if request.session.lang == "en" %} class="language-active" {% else %}
+                                                            href="{% url 'change_language' "en" %}"
+                                                            class="language" {% endif %}>Eng</a>
+                    <a{% if request.session.lang == "ru" %} class="language-active" {% else %}
+                                                            href="{% url 'change_language' "ru" %}"
+                                                            class="language" {% endif %}>Ru</a>
                 </span>
 {#                <button type="button" class="btn">Квести</button>#}
                 <span class="phone-preferences">
@@ -127,23 +134,16 @@
                 <div class="detailed-text">
                     <p class="detailed-paragraph">
                         {% if request.session.lang == "ua" %}
-                            TRUE QUEST – це абсолютно нове бачення старого. Наша команда протягом
-                            довгого часу відвідувала різні квест-кімнати в різних містах нашої рідної країни і ми
-                            помітили
-                            дещо, що узагальнювало всі квести – це пристосування до приміщення. Ми вирішили піти від
-                            іншого
-                            – пристосувати приміщенні під квест, тому в наших квестах все надзвичайно реалістичне, бо
-                            кожен
-                            елемент створювався з тим, а як на це буде дивитися гравець, чи не буде побудована
-                            реальність
-                            виглядати дешево і повертати гравця назад у буденність. Наша основна ціль надати гравцям те,
-                            чого ми не знайшли у всіх інших. Це велика робота над помилками, яку ми робили, робимо і
-                            будемо
-                            робити, тому що не існує ідеалів, але до них потрібно постійно крокувати. Це ми зробимо
-                            разом з
-                            Вами, бо ми також гравці, допитливі ентузіасти, які хочу розривати шаблони буденності і
-                            сірості,
-                            яка все більше і більше заполоняє наш світ.
+                            TRUE QUEST – це абсолютно нове бачення старого. Наша команда протягом довгого часу
+                            відвідувала різні квест-кімнати в різних містах нашої рідної країни та ми помітили дещо, що
+                            узагальнювало всі квести – це пристосування до приміщення. Ми вирішили піти від іншого –
+                            пристосувати приміщенні під квест, тому в наших квестах все надзвичайно реалістичне, бо
+                            кожен елемент створювався з тим, а як на це буде дивитися гравець, чи не буде побудована
+                            реальність виглядати дешево і повертати гравця назад у буденність. Наша основна ціль надати
+                            гравцям те, чого ми не знайшли у всіх інших. Це велика робота над помилками, яку ми робили,
+                            робимо і будемо робити, тому що не існує ідеалів, але до них потрібно постійно крокувати. Це
+                            ми зробимо разом з Вами, бо ми також гравці, допитливі ентузіасти, які хочуть розривати
+                            шаблони буденності й сірості, яка все більше і більше заповнює  наш світ.
                         {% endif %}
                         {% if request.session.lang == "en" %}
                             TRUE QUEST is a completely new vision of the old. Our team has been visiting different quest
@@ -182,20 +182,14 @@
 
                     <p class="detailed-paragraph">
                         {% if request.session.lang == "ua" %}
-                            TRUE QUEST означає справжній квест, рішення про назву прийшло до нас
-                            абсолютно спонтанно і при досить рутинних обставинах. Наш дизайнер сидів у гарному закладі в
-                            центрі
-                            Львова і потягував смачну каву, якою так славиться наше місто і раптом, навіть не
-                            задумуючись,
+                            TRUE QUEST означає справжній квест, рішення про назву прийшло до нас абсолютно спонтанно і
+                            при досить рутинних обставинах. Наш дизайнер сидів у гарному закладі в центрі Львова і
+                            потягував смачну каву, якою так славиться наше місто і раптом, навіть не задумуючись,
                             мимохідь, сказав, що йому потрібне щось справжнє, те, за що він буде готовий віддати гроші
-                            не
-                            шкодуючи і отримуючи задоволення. Справжній квест, подумали ми, не вичурна незрозуміла
-                            назва, а
-                            щось
-                            звичайне і, водночас те, чого не вистачає, те, що наче є, але, що складно знайти –
-                            справжність.
-                            Ось
-                            так справжня кава старого Львова піднесла неочікуваний результат наших міркувань.
+                            не шкодуючи та отримуючи задоволення. Справжній квест, подумали ми, не примхувата
+                             незрозуміла назва, а щось звичайне і, водночас те, чого не вистачає, те, що наче є, але, що
+                            складно знайти – справжність. Ось так справжня кава старого Львова піднесла неочікуваний
+                            результат наших міркувань.
                         {% endif %}
                         {% if request.session.lang == "en" %}
                             TRUE QUEST means a real quest, the decision about the name came to us completely
@@ -227,47 +221,30 @@
                     <p class="detailed-paragraph">
                         {% if request.session.lang == "ua" %}
                             Напевно Вам кортить дізнатися як все починалося… Ми з радістю поділимося з Вами цієї
-                            історією,
-                            яка оповита суцільною містикою і несподіваними подіями, в які ми були втягнуті на шляху до
-                            відкриття.
-                            Все почалося чудовим весняним ранком 2020 року, наша компанія з чотирьох друзів вирішила
-                            вперше
-                            відвідати звичайний квест, але не будь-де, а у самому Єгипті, куди ми вирішили поїхати
-                            відпочити
-                            компанією. Але ми були б не ми, якщо не зіткнулися з гідом, який вирішив заробити грошенят
-                            пропонуючи нам всілякі екскурсії, однією з таких екскурсій був Каїр…Ну ми ж не думали, що
-                            від
-                            спеки нам так припече в голову, що ми погодимося піти з гідом в квест-кімнату. Чи то так
-                            спека
-                            на нас повпливала, чи то гід був був настільки красномовним, але наша пригода тільки
-                            починалася.
-                            Першою пригодою був сам Каїр, такий багатий і, водночас, такий злиденний. Нам тоді багато
-                            чого
-                            здавалося таким неоднозначним, але вже тоді ми відчули ту справжність, яка до сих пір
-                            залишається з нами. Красивою повинна бути не тільки обгортка, але й цукерка. (Смачною бажано
-                            теж) Перед тим як приїхати до місця розташування квесту, ми зупинялися майже в кожному
-                            великому
-                            магазині, бо ціни в місті надзвичайно різнилися з тими, що були на туристичних локаціях і,
-                            як в
-                            нас прийнято, скуповували весь мотлох, який тільки потрапляв у поле нашого зору. До чого ми
-                            це
-                            все ведемо, в кожному магазині ми купували абсолютно різні речі, не схожі одні на одні, але
-                            була
-                            одна річ, яку всі придбали однакову, це була місцева головоломка якогось майстра, яка
-                            базувалася
-                            на тому, що потрібно дістати металеву кульку з дерев’яної пірамідки. Тоді ми не звернули на
-                            те
-                            увагу, ми були в очікуванні надзвичайно реалістичного квесту з муміями, гробницями і
-                            незабутньою
-                            атмосферою. Нас обманули, як це часто буває, і обіцяний величний квест виявився повною
-                            помилкою
-                            природи і купою синців всюди, де тільки можливо. Ввечері ми дісталися нашого незабутнього
-                            готелю, який був рівноцінний квесту, і взнали, що пакунки з подарунками, які ми купували
-                            цілий
-                            день, зникли, як і сам гід. Відчувши повне розчарування ми пішли на вечерю і саме тоді
-                            виявилося, що пірамідки, які купили, були при нас, чотири абсолютно однакові пірамідки у
-                            кожного
-                            з нас. В той самий вечір ми вирішили зробити щось своє, справжнє і особливе)
+                            історією, яка оповита суцільною містикою і несподіваними подіями, в які ми були втягнуті на
+                            шляху до відкриття. Все почалося чудовим весняним ранком 2020 року, наша компанія з чотирьох
+                            друзів вирішила вперше відвідати звичайний квест, але не будь-де, а у самому Єгипті, куди ми
+                            вирішили поїхати відпочити компанією. Але ми були б не ми, якщо не зіткнулися з гідом, який
+                            вирішив заробити грошенят пропонуючи нам всілякі екскурсії, однією з таких екскурсій був
+                            Каїр…Ну ми ж не думали, що від спеки нам так припече в голову, що ми погодимося піти з гідом
+                            у квест-кімнату. Чи то так спека на нас повпливала, чи то гід був настільки красномовним,
+                            але наша пригода тільки починалася. Першою пригодою був сам Каїр, такий багатий і  водночас
+                            такий злиденний. Нам тоді багато чого здавалося таким неоднозначним, але вже тоді ми відчули
+                            ту справжність, яка дотепер залишається з нами. Красивою повинна бути не тільки обгортка,
+                            але й цукерка. (Смачною бажано теж) Перед тим як приїхати до місця розташування квесту, ми
+                            зупинялися майже в кожному великому магазині, бо ціни в місті надзвичайно різнилися з тими,
+                            що були на туристичних локаціях і, як узвичаєно, скуповували весь мотлох, який тільки
+                            потрапляв у поле нашого зору. До чого ми це все ведемо, в кожному магазині ми купували
+                            абсолютно різні речі, не схожі одні на одні, але була одна річ, яку всі придбали однакову,
+                            це була місцева головоломка якогось майстра, яка базувалася на тому, що потрібно дістати
+                            металеву кульку з дерев’яної пірамідки. Тоді ми не звернули на те увагу, ми були в
+                            очікуванні надзвичайно реалістичного квесту з муміями, гробницями та незабутньою атмосферою.
+                            Нас обманули, як це часто буває, і обіцяний величний квест виявився повною помилкою природи
+                            й купою синців всюди, де тільки можливо. Ввечері ми дісталися нашого незабутнього готелю,
+                            який був рівноцінний квесту, і взнали, що пакунки з подарунками, які ми купували цілий день,
+                            зникли, як і сам гід. Відчувши повне розчарування ми пішли на вечерю і саме тоді виявилося,
+                            що пірамідки, які купили, були при нас, чотири абсолютно однакові пірамідки у кожного з нас.
+                            В той самий вечір ми вирішили зробити щось своє, справжнє та особливе.
                         {% endif %}
                         {% if request.session.lang == "en" %}
                             You probably want to know how it all started… We will be happy to share with you this story,
@@ -343,55 +320,55 @@
         </div>
     </div>
     <footer class="footer-distributed">
-    <div class="footer-left">
-        <img src="{% static 'images/logo.png' %}" alt="">
-        <p class="footer-links">
-            <a href="#">
-                {% if request.session.lang == "ua" %}
-                    Головна
-                {% endif %}
-                {% if request.session.lang == "en" %}
-                    Main
-                {% endif %}
-                {% if request.session.lang == "ru" %}
-                    Главная
-                {% endif %}
-            </a>
-            ·
-            <a href="#">
-                {% if request.session.lang == "ua" %}
-                    Про нас
-                {% endif %}
-                {% if request.session.lang == "en" %}
-                    About Us
-                {% endif %}
-                {% if request.session.lang == "ru" %}
-                    О нас
-                {% endif %}
-            </a>
-            ·
-            <a href="#">
-                {% if request.session.lang == "ua" %}
-                    Франшиза
-                {% endif %}
-                {% if request.session.lang == "en" %}
-                    Franchise
-                {% endif %}
-                {% if request.session.lang == "ru" %}
-                    Франшиза
-                {% endif %}
+        <div class="footer-left">
+            <img src="{% static 'images/logo.png' %}" alt="">
+            <p class="footer-links">
+                <a href="#">
+                    {% if request.session.lang == "ua" %}
+                        Головна
+                    {% endif %}
+                    {% if request.session.lang == "en" %}
+                        Main
+                    {% endif %}
+                    {% if request.session.lang == "ru" %}
+                        Главная
+                    {% endif %}
+                </a>
+                ·
+                <a href="#">
+                    {% if request.session.lang == "ua" %}
+                        Про нас
+                    {% endif %}
+                    {% if request.session.lang == "en" %}
+                        About Us
+                    {% endif %}
+                    {% if request.session.lang == "ru" %}
+                        О нас
+                    {% endif %}
+                </a>
+                ·
+                <a href="#">
+                    {% if request.session.lang == "ua" %}
+                        Франшиза
+                    {% endif %}
+                    {% if request.session.lang == "en" %}
+                        Franchise
+                    {% endif %}
+                    {% if request.session.lang == "ru" %}
+                        Франшиза
+                    {% endif %}
 
-            </a>
-        </p>
+                </a>
+            </p>
 
-        <p class="footer-company-name">TrueQuest &copy; 2021</p>
-    </div>
+            <p class="footer-company-name">TrueQuest &copy; 2021</p>
+        </div>
 
-    <div class="footer-center">
+        <div class="footer-center">
 
-        <div>
-            <i class="fa fa-map-marker"></i>
-            <p>
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p>
                 <span>
                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                       stroke="#FFA70A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
@@ -412,43 +389,43 @@
                         <a href="https://goo.gl/maps/cvAy5TNhYX7N1zEb9">Львов, ул. Енергетическая 4</a>
                     {% endif %}
                 </span>
-            </p>
+                </p>
+            </div>
+
+            <div>
+
+                <i class="fa fa-phone"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                     stroke="#FFA70A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                     class="feather feather-phone">
+                    <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+
+
+                <p><a href="tel:380632022343">+38 063 20 223 43</a></p>
+            </div>
+
+            <div>
+
+                <i class="fa fa-envelope"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                     stroke="#FFA70A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                     class="feather feather-mail">
+                    <path
+                            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline
+                            points="22,6 12,13 2,6"></polyline>
+                </svg>
+
+                <p><a href="mailto:t.r.u.e.0q.u.e.s.t@gmail.com">t.r.u.e.0q.u.e.s.t@gmail.com</a></p>
+            </div>
+
         </div>
 
-        <div>
+        <div class="footer-right">
 
-            <i class="fa fa-phone"></i>
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                 stroke="#FFA70A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-                 class="feather feather-phone">
-                <path
-                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-            </svg>
-
-
-            <p><a href="tel:380632022343">+38 063 20 223 43</a></p>
-        </div>
-
-        <div>
-
-            <i class="fa fa-envelope"></i>
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                 stroke="#FFA70A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-                 class="feather feather-mail">
-                <path
-                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                <polyline
-                        points="22,6 12,13 2,6"></polyline>
-            </svg>
-
-            <p><a href="mailto:t.r.u.e.0q.u.e.s.t@gmail.com">t.r.u.e.0q.u.e.s.t@gmail.com</a></p>
-        </div>
-
-    </div>
-
-    <div class="footer-right">
-
-        <p class="footer-company-about">
+            <p class="footer-company-about">
             <span>
                 {% if request.session.lang == "ua" %}
                     Про нас
@@ -460,42 +437,42 @@
                     О нас
                 {% endif %}
             </span>
-            {% if request.session.lang == "ua" %}
-                TRUE QUEST - означає справжній квест, це абсолютно нове бачення старого
-            {% endif %}
-            {% if request.session.lang == "en" %}
-                TRUE QUEST means a real quest, this is a completely new vision of the old
-            {% endif %}
-            {% if request.session.lang == "ru" %}
-                TRUE QUEST - значит настоящий квест, это совершенно новое видение старого
-            {% endif %}
+                {% if request.session.lang == "ua" %}
+                    TRUE QUEST - означає справжній квест, це абсолютно нове бачення старого
+                {% endif %}
+                {% if request.session.lang == "en" %}
+                    TRUE QUEST means a real quest, this is a completely new vision of the old
+                {% endif %}
+                {% if request.session.lang == "ru" %}
+                    TRUE QUEST - значит настоящий квест, это совершенно новое видение старого
+                {% endif %}
 
-        </p>
+            </p>
 
-        <div class="footer-icons">
+            <div class="footer-icons">
 
-            <a href="https://www.instagram.com/true.quest">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     width="24"
-                     height="24"
-                     viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="#FFA70A"
-                     stroke-width="2"
-                     stroke-linecap="round"
-                     stroke-linejoin="round"
-                     class="feather feather-instagram">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                </svg>
-            </a>
+                <a href="https://www.instagram.com/true.quest">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="24"
+                         height="24"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="#FFA70A"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round"
+                         class="feather feather-instagram">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+
+            </div>
 
         </div>
 
-    </div>
-
-</footer>
+    </footer>
 </div>
 <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 </body>
